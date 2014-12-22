@@ -176,8 +176,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
         String formatterPattern = null;
         final char[] chars = pattern.toCharArray();
         final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < chars.length; i++) {
-            final char c = chars[i];
+        for (final char c : chars) {
             if (c == ',') {
                 if (parameter == null) {
                     parameter = sb.toString();

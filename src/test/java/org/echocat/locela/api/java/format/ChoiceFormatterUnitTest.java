@@ -19,7 +19,7 @@ import org.echocat.locela.api.java.format.ChoiceFormatter.Extraction;
 import org.junit.Test;
 
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.equals;
-import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.gretherThan;
+import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.greaterThan;
 import static java.util.Locale.US;
 import static org.echocat.jomon.runtime.CollectionUtils.asList;
 import static org.echocat.jomon.testing.Assert.assertThat;
@@ -34,7 +34,7 @@ public class ChoiceFormatterUnitTest {
         final Formatter formatterB = mock(Formatter.class, "b");
         final ChoiceFormatter choiceFormatter = new ChoiceFormatter(US, asList(
             new Condition("1", equals, formatterA),
-            new Condition("2", gretherThan, formatterB)
+            new Condition("2", greaterThan, formatterB)
         ));
         assertThat(choiceFormatter.toString(), is("choice,1#a|2<b"));
     }
@@ -42,7 +42,7 @@ public class ChoiceFormatterUnitTest {
     @Test
     public void testOperatorToString() throws Exception {
         assertThat(equals.toString(), is("#"));
-        assertThat(gretherThan.toString(), is("<"));
+        assertThat(greaterThan.toString(), is("<"));
     }
 
 

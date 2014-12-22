@@ -37,7 +37,7 @@ public class MessageFormatWithChoiceUnitTest extends BundledMessageFormatTestSup
         "zero", 0,
         "one", 1,
         "two", 2,
-        "contidionString", "1#is one file|1",
+        "conditionString", "1#is one file|1",
         "oneWithEscape", "1'",
         "aTrue", true,
         "aFalse", false,

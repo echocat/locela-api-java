@@ -80,10 +80,10 @@ public class MessageFormatterFactory implements FormatterFactory<MessageFormatte
     @Override
     public MessageFormatter createBy(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
         assertSameRoot(root);
-        return createByInernal(locale, pattern);
+        return createByInternal(locale, pattern);
     }
 
-    protected MessageFormatter createByInernal(@Nonnull Locale locale, @Nullable String pattern) {
+    protected MessageFormatter createByInternal(@Nonnull Locale locale, @Nullable String pattern) {
         return new MessageFormatter(locale, pattern, this);
     }
 

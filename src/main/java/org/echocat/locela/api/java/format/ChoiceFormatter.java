@@ -28,7 +28,7 @@ import java.util.Locale;
 
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.equals;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.findOperatorFor;
-import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.gretherThan;
+import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.greaterThan;
 
 public class ChoiceFormatter extends FormatterSupport {
 
@@ -78,7 +78,7 @@ public class ChoiceFormatter extends FormatterSupport {
             }
         }
         if (test != null) {
-            throw new IllegalArgumentException("Unexpedted end of pattern: " + pattern);
+            throw new IllegalArgumentException("Unexpected end of pattern: " + pattern);
         }
 
         return conditions;
@@ -104,7 +104,7 @@ public class ChoiceFormatter extends FormatterSupport {
                 sb.append(c);
             } else {
                 if (c == '|') {
-                    throw new IllegalArgumentException("Unexpected seperation character ' of pattern: " + new String(chars, begin, chars.length - begin));
+                    throw new IllegalArgumentException("Unexpected separation character ' of pattern: " + new String(chars, begin, chars.length - begin));
                 }
                 operator = findOperatorFor(c);
                 if (operator != null) {
@@ -124,8 +124,9 @@ public class ChoiceFormatter extends FormatterSupport {
     protected Extraction extractPattern(@Nonnull char[] chars, @Nonnegative int begin) throws IllegalArgumentException {
         int i;
         boolean inEscape = false;
+        boolean patternSeparatorFound = false;
         final StringBuilder sb = new StringBuilder();
-        for (i = begin; i < chars.length; i++) {
+        for (i = begin; !patternSeparatorFound && i < chars.length; i++) {
             final char c = chars[i];
             if (c == '\'') {
                 if (i + 1 <= chars.length && chars[i + 1] == '\'') {
@@ -138,7 +139,7 @@ public class ChoiceFormatter extends FormatterSupport {
             } else if (inEscape) {
                 sb.append(c);
             } else if (c == '|') {
-                break;
+                patternSeparatorFound = true;
             } else {
                 sb.append(c);
             }
@@ -257,7 +258,7 @@ public class ChoiceFormatter extends FormatterSupport {
                 result = false;
             } else if (_operator == equals) {
                 result = _testAsDouble == value.doubleValue();
-            } else if (_operator == gretherThan) {
+            } else if (_operator == greaterThan) {
                 result = _testAsDouble < value.doubleValue();
             } else {
                 throw new UnsupportedOperationException("Operator " + _operator + " is not supported.");
@@ -269,7 +270,7 @@ public class ChoiceFormatter extends FormatterSupport {
             final boolean result;
             if (_operator == equals) {
                 result = _test.equals(value);
-            } else if (_operator == gretherThan) {
+            } else if (_operator == greaterThan) {
                 result = _test.compareTo(value) < 0;
             } else {
                 throw new UnsupportedOperationException("Operator " + _operator + " is not supported.");
@@ -289,7 +290,7 @@ public class ChoiceFormatter extends FormatterSupport {
 
     public static enum Operator {
         equals('#'),
-        gretherThan('<');
+        greaterThan('<');
 
         private final char _character;
 
