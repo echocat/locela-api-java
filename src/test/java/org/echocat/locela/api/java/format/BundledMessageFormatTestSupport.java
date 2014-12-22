@@ -1,0 +1,104 @@
+/*****************************************************************************************
+ * *** BEGIN LICENSE BLOCK *****
+ *
+ * Version: MPL 2.0
+ *
+ * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * *** END LICENSE BLOCK *****
+ ****************************************************************************************/
+
+package org.echocat.locela.api.java.format;
+
+import org.junit.Test;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Locale;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+
+import static java.util.Locale.US;
+import static org.echocat.jomon.runtime.CollectionUtils.asImmutableList;
+import static org.echocat.jomon.testing.Assert.assertThat;
+import static org.echocat.jomon.testing.BaseMatchers.is;
+
+public abstract class BundledMessageFormatTestSupport {
+
+    @Nonnull
+    private final Locale _locale;
+    @Nonnull
+    private final String _pattern;
+    @Nonnull
+    private final String _expectedResult;
+
+    protected static Collection<Object[]> createParameters(@Nonnull String name, @Nullable Locale... locales) throws Exception {
+        final Collection<Object[]> results = new ArrayList<>();
+        if (locales != null && locales.length > 0) {
+            for (final Locale locale : locales) {
+                final ResourceBundle bundle = getFormatToResultsFor(locale, name);
+                for (final String key : bundle.keySet()) {
+                    results.add(new Object[]{locale, key, bundle.getString(key)});
+                }
+            }
+        } else {
+            final ResourceBundle bundle = getFormatToResultsFor(null, name);
+            for (final String key : bundle.keySet()) {
+                results.add(new Object[]{US, key, bundle.getString(key)});
+            }
+        }
+        return asImmutableList(results);
+    }
+
+    @Nonnull
+    protected static ResourceBundle getFormatToResultsFor(@Nullable Locale locale, @Nonnull String name) throws IOException {
+        final String filename = "expectedFormatResults." + name + (locale != null ? "_" + locale : "") + ".properties";
+        try (final InputStream is = BundledMessageFormatTestSupport.class.getResourceAsStream(filename)) {
+            if (is == null) {
+                throw new AssertionError("The expected file '" + filename + "' could not be found.");
+            }
+            try (final Reader reader = new InputStreamReader(is, "UTF-8")) {
+                return new PropertyResourceBundle(reader);
+            }
+        }
+    }
+
+    protected BundledMessageFormatTestSupport(@Nonnull Locale locale, @Nonnull String pattern, @Nonnull String expectedResult) {
+        _locale = locale;
+        _pattern = pattern;
+        _expectedResult = expectedResult;
+    }
+
+    @Nonnull
+    public Locale getLocale() {
+        return _locale;
+    }
+
+    @Nonnull
+    public String getPattern() {
+        return _pattern;
+    }
+
+    @Nonnull
+    public String getExpectedResult() {
+        return _expectedResult;
+    }
+
+    @Test
+    public void testFormat() throws Exception {
+        assertThat(executeFormat(_locale, _pattern), is(_expectedResult));
+    }
+
+    protected abstract String executeFormat(@Nonnull Locale locale, @Nonnull String pattern) throws Exception;
+
+}
