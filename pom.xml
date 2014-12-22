@@ -167,6 +167,7 @@
                     <configuration>
                         <forkMode>always</forkMode>
                         <useFile>false</useFile>
+                        <argLine>-Duser.timezone="Europe/Berlin"</argLine>
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>
