@@ -124,9 +124,8 @@ public class ChoiceFormatter extends FormatterSupport {
     protected Extraction extractPattern(@Nonnull char[] chars, @Nonnegative int begin) throws IllegalArgumentException {
         int i;
         boolean inEscape = false;
-        boolean patternSeparatorFound = false;
         final StringBuilder sb = new StringBuilder();
-        for (i = begin; !patternSeparatorFound && i < chars.length; i++) {
+        for (i = begin; i < chars.length; i++) {
             final char c = chars[i];
             if (c == '\'') {
                 if (i + 1 <= chars.length && chars[i + 1] == '\'') {
@@ -139,7 +138,7 @@ public class ChoiceFormatter extends FormatterSupport {
             } else if (inEscape) {
                 sb.append(c);
             } else if (c == '|') {
-                patternSeparatorFound = true;
+                break;
             } else {
                 sb.append(c);
             }
