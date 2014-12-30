@@ -12,19 +12,25 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.format;
+package org.echocat.locela.api.java.properties;
+
+import org.echocat.jomon.runtime.util.IdEnabled;
+import org.echocat.locela.api.java.annotations.AnnotationContainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Locale;
 
-public interface Formatter {
+public interface Property<V> extends IdEnabled<String>, AnnotationContainer {
 
-    public void format(@Nullable Object value, @Nonnull Writer to) throws IOException;
+    @Nonnull
+    @Override
+    public String getId();
 
     @Nullable
-    public Locale getLocale();
+    public V get();
+
+    public Property<V> set(@Nullable V content) throws IllegalArgumentException;
+
+    public Class<V> getType();
 
 }

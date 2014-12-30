@@ -12,19 +12,19 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.format;
+package org.echocat.locela.api.java.annotations;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Locale;
+import org.echocat.locela.api.java.annotations.Annotation.Factory.Provider.UnknownAnnotationException;
+import org.junit.Test;
 
-public interface Formatter {
+import static org.echocat.jomon.testing.Assert.assertThat;
+import static org.echocat.jomon.testing.BaseMatchers.is;
 
-    public void format(@Nullable Object value, @Nonnull Writer to) throws IOException;
+public class AnnotationFactoryUnitTest {
 
-    @Nullable
-    public Locale getLocale();
+    @Test
+    public void testUnknownAnnotationExceptionCreation() throws Exception {
+        assertThat(new UnknownAnnotationException("foo").getMessage(), is("foo"));
+    }
 
 }

@@ -24,6 +24,6 @@ public interface FormatterFactory<F extends Formatter> {
     public String getId();
 
     @Nonnull
-    public F createBy(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root);
+    public F createBy(@Nullable Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root);
 
 }

@@ -18,6 +18,7 @@ import org.echocat.jomon.runtime.util.Value;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -31,6 +32,7 @@ import static org.echocat.locela.api.java.format.DateTimeFormatter.dateTimeForma
 import static org.echocat.locela.api.java.format.NumberFormatter.numberFormatFactory;
 import static org.echocat.locela.api.java.format.TimeFormatter.timeFormatterFactory;
 
+@ThreadSafe
 public class MessageFormatter extends FormatterSupport implements Iterable<Formatter> {
 
     protected static final ThreadLocal<Value<Object>> CALLED_VALUE = new ThreadLocal<>();
@@ -306,6 +308,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
         return getSubFormatter().hashCode();
     }
 
+    @ThreadSafe
     protected static class PassThruFormatter extends FormatterSupport {
 
         public PassThruFormatter(@Nonnull Locale locale) {
@@ -337,6 +340,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
 
     }
 
+    @ThreadSafe
     protected static class ParameterAwareFormatter extends FormatterSupport {
 
         @Nonnull
@@ -424,6 +428,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
         }
     }
 
+    @ThreadSafe
     protected static class StaticFormatter extends FormatterSupport {
 
         @Nonnull

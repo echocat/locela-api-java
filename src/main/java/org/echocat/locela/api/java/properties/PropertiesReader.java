@@ -12,19 +12,15 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.format;
+package org.echocat.locela.api.java.properties;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.IOException;
-import java.io.Writer;
-import java.util.Locale;
+import java.io.Reader;
 
-public interface Formatter {
+public interface PropertiesReader {
 
-    public void format(@Nullable Object value, @Nonnull Writer to) throws IOException;
-
-    @Nullable
-    public Locale getLocale();
+    @Nonnull
+    public Properties<String> read(@Nonnull Reader reader) throws IOException;
 
 }

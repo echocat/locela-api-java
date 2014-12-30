@@ -19,6 +19,7 @@ import com.google.common.base.Predicate;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -26,10 +27,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import static java.util.Locale.US;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.equals;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.findOperatorFor;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.greaterThan;
 
+@ThreadSafe
 public class ChoiceFormatter extends FormatterSupport {
 
     @SuppressWarnings("ConstantNamingConvention")
@@ -174,6 +177,7 @@ public class ChoiceFormatter extends FormatterSupport {
     }
 
 
+    @ThreadSafe
     public static class Condition implements Predicate<Object> {
 
         @Nonnull
@@ -320,6 +324,7 @@ public class ChoiceFormatter extends FormatterSupport {
 
     }
 
+    @ThreadSafe
     protected static class Factory implements FormatterFactory<ChoiceFormatter> {
 
         @Nonnull
@@ -330,12 +335,13 @@ public class ChoiceFormatter extends FormatterSupport {
 
         @Nonnull
         @Override
-        public ChoiceFormatter createBy(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
-            return new ChoiceFormatter(locale, pattern, root);
+        public ChoiceFormatter createBy(@Nullable Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
+            return new ChoiceFormatter(locale != null ? locale : US, pattern, root);
         }
 
     }
 
+    @ThreadSafe
     protected static class Extraction {
 
         @Nonnull

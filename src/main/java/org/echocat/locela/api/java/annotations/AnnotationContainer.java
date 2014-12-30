@@ -12,19 +12,22 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.format;
+package org.echocat.locela.api.java.annotations;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Locale;
 
-public interface Formatter {
+public interface AnnotationContainer {
 
-    public void format(@Nullable Object value, @Nonnull Writer to) throws IOException;
+    @Nonnull
+    public Iterable<Annotation> annotations();
 
-    @Nullable
-    public Locale getLocale();
+    @Nonnull
+    public <T extends Annotation> Iterable<T> annotations(@Nonnull Class<? extends T> ofType);
+
+    public void addAnnotation(@Nonnull Annotation annotation);
+
+    public void removeAnnotation(@Nonnull Annotation annotation);
+
+    public void removeAnnotations(@Nonnull Class<? extends Annotation> ofType);
 
 }

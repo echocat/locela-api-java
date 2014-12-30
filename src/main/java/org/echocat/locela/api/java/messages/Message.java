@@ -12,19 +12,27 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.format;
+package org.echocat.locela.api.java.messages;
+
+import org.echocat.jomon.runtime.util.IdEnabled;
+import org.echocat.locela.api.java.format.Formatter;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Locale;
+import java.util.Map;
 
-public interface Formatter {
+public interface Message extends Formatter, IdEnabled<String> {
 
-    public void format(@Nullable Object value, @Nonnull Writer to) throws IOException;
+    @Nonnull
+    public String format(@Nullable Map<String, ?> values);
 
-    @Nullable
-    public Locale getLocale();
+    @Nonnull
+    public String format(@Nullable Iterable<?> values);
+
+    @Nonnull
+    public String format(@Nullable Object... values);
+
+    @Nonnull
+    public String get();
 
 }

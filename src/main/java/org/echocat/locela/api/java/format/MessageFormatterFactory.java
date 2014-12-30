@@ -16,13 +16,16 @@ package org.echocat.locela.api.java.format;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static java.util.Locale.US;
 import static org.echocat.jomon.runtime.CollectionUtils.asImmutableMap;
 import static org.echocat.jomon.runtime.CollectionUtils.asList;
 
+@ThreadSafe
 public class MessageFormatterFactory implements FormatterFactory<MessageFormatter> {
 
     @Nonnull
@@ -72,19 +75,19 @@ public class MessageFormatterFactory implements FormatterFactory<MessageFormatte
     }
 
     @Nonnull
-    public MessageFormatter createBy(@Nonnull Locale locale, @Nullable String pattern) {
+    public MessageFormatter createBy(@Nullable Locale locale, @Nullable String pattern) {
         return createBy(locale, pattern, this);
     }
 
     @Nonnull
     @Override
-    public MessageFormatter createBy(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
+    public MessageFormatter createBy(@Nullable Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
         assertSameRoot(root);
         return createByInternal(locale, pattern);
     }
 
-    protected MessageFormatter createByInternal(@Nonnull Locale locale, @Nullable String pattern) {
-        return new MessageFormatter(locale, pattern, this);
+    protected MessageFormatter createByInternal(@Nullable Locale locale, @Nullable String pattern) {
+        return new MessageFormatter(locale != null ? locale : US, pattern, this);
     }
 
     protected void assertSameRoot(@Nullable FormatterFactory<?> root) {

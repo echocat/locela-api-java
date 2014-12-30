@@ -17,6 +17,7 @@ package org.echocat.locela.api.java.format;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.IOException;
 import java.io.Writer;
 import java.text.DateFormat;
@@ -25,10 +26,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static java.util.Locale.US;
 import static org.echocat.locela.api.java.format.TimeFormatter.Pattern.DEFAULT;
 import static java.text.DateFormat.getTimeInstance;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
+@ThreadSafe
 public class TimeFormatter extends FormatterSupport {
 
     @SuppressWarnings("ConstantNamingConvention")
@@ -142,6 +145,7 @@ public class TimeFormatter extends FormatterSupport {
 
     }
 
+    @ThreadSafe
     protected static class Factory implements FormatterFactory<TimeFormatter> {
 
         @Nonnull
@@ -152,8 +156,8 @@ public class TimeFormatter extends FormatterSupport {
 
         @Nonnull
         @Override
-        public TimeFormatter createBy(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
-            return new TimeFormatter(locale, pattern);
+        public TimeFormatter createBy(@Nullable Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
+            return new TimeFormatter(locale != null ? locale : US, pattern);
         }
 
     }

@@ -167,7 +167,8 @@
                     <configuration>
                         <forkMode>always</forkMode>
                         <useFile>false</useFile>
-                        <argLine>-Duser.timezone="Europe/Berlin"</argLine>
+                        <!--suppress MavenModelInspection -->
+                        <argLine>-Duser.timezone="Europe/Berlin" ${argLine}</argLine>
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>

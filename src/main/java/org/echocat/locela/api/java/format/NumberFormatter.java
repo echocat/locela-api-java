@@ -16,6 +16,7 @@ package org.echocat.locela.api.java.format;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.IOException;
 import java.io.Writer;
 import java.text.DecimalFormat;
@@ -25,12 +26,14 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static java.util.Locale.US;
 import static org.echocat.locela.api.java.format.NumberFormatter.Pattern.DEFAULT;
 import static java.text.NumberFormat.getCurrencyInstance;
 import static java.text.NumberFormat.getIntegerInstance;
 import static java.text.NumberFormat.getPercentInstance;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
+@ThreadSafe
 public class NumberFormatter extends FormatterSupport {
 
     @SuppressWarnings("ConstantNamingConvention")
@@ -91,6 +94,7 @@ public class NumberFormatter extends FormatterSupport {
         return _format;
     }
 
+    @ThreadSafe
     protected static class FormatAndPattern {
         @Nonnull
         private final NumberFormat _format;
@@ -171,6 +175,7 @@ public class NumberFormatter extends FormatterSupport {
         public abstract NumberFormat toFormat(@Nonnull Locale locale);
     }
 
+    @ThreadSafe
     protected static class Factory implements FormatterFactory<NumberFormatter> {
 
         @Nonnull
@@ -181,8 +186,8 @@ public class NumberFormatter extends FormatterSupport {
 
         @Nonnull
         @Override
-        public NumberFormatter createBy(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
-            return new NumberFormatter(locale, pattern);
+        public NumberFormatter createBy(@Nullable Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
+            return new NumberFormatter(locale != null ? locale : US, pattern);
         }
 
     }
