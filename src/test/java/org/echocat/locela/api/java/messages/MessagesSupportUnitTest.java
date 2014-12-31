@@ -23,7 +23,6 @@ import java.io.Writer;
 import java.util.*;
 import java.util.Map.Entry;
 
-import static java.util.Locale.US;
 import static org.echocat.jomon.runtime.CollectionUtils.asMap;
 import static org.echocat.jomon.testing.Assert.assertThat;
 import static org.echocat.jomon.testing.BaseMatchers.is;
@@ -34,41 +33,23 @@ public class MessagesSupportUnitTest {
 
     @Test
     public void testEquals() throws Exception {
-        assertThat(messages(null,
+        assertThat(messages(
             "a", "1",
             "b", "2"
-        ).equals(messages(null,
+        ).equals(messages(
             "b", "2",
             "a", "1"
         )), is(true));
 
-        assertThat(messages(US,
-            "a", "1",
-            "b", "2"
-        ).equals(messages(US,
-            "b", "2",
-            "a", "1"
-        )), is(true));
-
-        assertThat(messages(null).equals(messages(null)), is(true));
-
-        assertThat(messages(US).equals(messages(US)), is(true));
+        assertThat(messages().equals(messages()), is(true));
     }
 
     @Test
     public void testEqualsDoesNotMatchOnContent() throws Exception {
-        assertThat(messages(null,
+        assertThat(messages(
             "a", "1",
             "b", "2"
-        ).equals(messages(null,
-            "b", "3",
-            "a", "1"
-        )), is(false));
-
-        assertThat(messages(US,
-            "a", "1",
-            "b", "2"
-        ).equals(messages(US,
+        ).equals(messages(
             "b", "3",
             "a", "1"
         )), is(false));
@@ -76,35 +57,17 @@ public class MessagesSupportUnitTest {
 
     @Test
     public void testEqualsDoesNotMatchOnKeys() throws Exception {
-        assertThat(messages(null,
+        assertThat(messages(
             "a", "1",
             "b", "2"
-        ).equals(messages(null,
+        ).equals(messages(
             "a", "1"
-        )), is(false));
-
-        assertThat(messages(US,
-            "a", "1",
-            "b", "2"
-        ).equals(messages(US,
-            "a", "1"
-        )), is(false));
-    }
-
-    @Test
-    public void testEqualsDoesNotMatchOnLocale() throws Exception {
-        assertThat(messages(null,
-            "a", "1",
-            "b", "2"
-        ).equals(messages(US,
-            "a", "1",
-            "b", "2"
         )), is(false));
     }
 
     @Test
     public void testEqualsOnSame() throws Exception {
-        final Messages messages = messages(null,
+        final Messages messages = messages(
             "a", "1",
             "b", "2"
         );
@@ -115,7 +78,7 @@ public class MessagesSupportUnitTest {
     @Test
     public void testEqualsOnNull() throws Exception {
         // noinspection ObjectEqualsNull
-        assertThat(messages(null,
+        assertThat(messages(
             "a", "1",
             "b", "2"
         ).equals(null), is(false));
@@ -123,92 +86,67 @@ public class MessagesSupportUnitTest {
 
     @Test
     public void testHashCode() throws Exception {
-        assertThat(messages(null,
+        assertThat(messages(
             "a", "1",
             "b", "2"
-        ).hashCode(), is(messages(null,
+        ).hashCode(), is(messages(
             "b", "2",
             "a", "1"
         ).hashCode()));
 
-        assertThat(messages(US,
-            "a", "1",
-            "b", "2"
-        ).hashCode(), is(messages(US,
-            "b", "2",
-            "a", "1"
-        ).hashCode()));
-
-        assertThat(messages(null).hashCode(), is(messages(null).hashCode()));
-
-        assertThat(messages(US).hashCode(), is(messages(US).hashCode()));
+        assertThat(messages().hashCode(), is(messages().hashCode()));
     }
 
     @Test
     public void testToString() throws Exception {
-        assertThat(messages(null,
+        assertThat(messages(
             "a", "1",
             "b", "2"
-        ).toString(), is("{a = 1, b = 2}"));
+        ).toString(), is("{a: 1, b: 2}"));
 
-        assertThat(messages(US,
-            "a", "1",
-            "b", "2"
-        ).toString(), is("(en_US){a = 1, b = 2}"));
-
-        assertThat(messages(null).toString(), is("{}"));
-        assertThat(messages(US).toString(), is("(en_US){}"));
+        assertThat(messages().toString(), is("{}"));
     }
 
     protected static class MessagesImpl extends MessagesSupport {
 
         @Nonnull
-        protected static Messages messages(@Nullable Locale locale) {
-            return messages(locale, (Message[]) null);
+        protected static Messages messages() {
+            return messages((Message[]) null);
         }
 
         @Nonnull
-        protected static Messages messages(@Nullable Locale locale, @Nullable String... idToContent) {
+        protected static Messages messages(@Nullable String... idToContent) {
             final Map<String, String> idToPlainMessage = asMap(idToContent);
             final List<Message> messages = new ArrayList<>();
             for (final Entry<String, String> idAndPlainMessage : idToPlainMessage.entrySet()) {
                 messages.add(message(idAndPlainMessage.getKey(), idAndPlainMessage.getValue()));
             }
-            return messages(locale, messages.toArray(new Message[messages.size()]));
+            return messages(messages.toArray(new Message[messages.size()]));
         }
 
         @Nonnull
-        protected static Messages messages(@Nullable Locale locale, @Nullable Message... messages) {
+        protected static Messages messages(@Nullable Message... messages) {
             final Map<String, Message> idToMessage = new LinkedHashMap<>();
             if (messages != null) {
                 for (final Message message : messages) {
                     idToMessage.put(message.getId(), message);
                 }
             }
-            return new MessagesImpl(locale, idToMessage);
+            return new MessagesImpl(idToMessage);
         }
 
-        @Nullable
-        private final Locale _locale;
         @Nonnull
         private final Map<String, Message> _idToMessage;
 
-        public MessagesImpl(@Nullable Locale locale, @Nonnull Map<String, Message> idToMessage) {
-            _locale = locale;
+        public MessagesImpl(@Nonnull Map<String, Message> idToMessage) {
             _idToMessage = idToMessage;
-        }
-
-        @Nullable
-        @Override
-        public Locale getLocale() {
-            return _locale;
         }
 
         @Nonnull
         @Override
-        public Message get(@Nonnull String id) {
+        public Message find(@Nonnull String id) {
             final Message result = _idToMessage.get(id);
-            return result != null ? result : new DummyMessage(_locale, id);
+            return result != null ? result : null;
         }
 
         @Override

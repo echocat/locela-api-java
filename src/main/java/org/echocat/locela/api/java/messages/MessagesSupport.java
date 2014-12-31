@@ -16,10 +16,21 @@ package org.echocat.locela.api.java.messages;
 
 import javax.annotation.Nonnull;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 public abstract class MessagesSupport implements Messages {
+
+    @Nonnull
+    @Override
+    public Message get(@Nonnull String id) {
+        final Message message = find(id);
+        return message != null ? message : dummyMessageFor(id);
+    }
+
+    @Nonnull
+    protected DummyMessage dummyMessageFor(@Nonnull String id) {
+        return new DummyMessage(null, id);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -30,21 +41,16 @@ public abstract class MessagesSupport implements Messages {
             result = false;
         } else {
             final Messages that = (Messages) o;
-            final Locale locale = getLocale();
-            if (locale != null ? locale.equals(that.getLocale()): that.getLocale() == null) {
-                final Set<String> thisIds = getIdsOf(this);
-                final Set<String> thatIds = getIdsOf(that);
-                if (thisIds.equals(thatIds)) {
-                    result = true;
-                    for (final Message thisMessage : this) {
-                        final Message thatMessage = that.get(thisMessage.getId());
-                        if (!thisMessage.equals(thatMessage)) {
-                            result = false;
-                            break;
-                        }
+            final Set<String> thisIds = getIdsOf(this);
+            final Set<String> thatIds = getIdsOf(that);
+            if (thisIds.equals(thatIds)) {
+                result = true;
+                for (final Message thisMessage : this) {
+                    final Message thatMessage = that.get(thisMessage.getId());
+                    if (!thisMessage.equals(thatMessage)) {
+                        result = false;
+                        break;
                     }
-                } else {
-                    result = false;
                 }
             } else {
                 result = false;
@@ -64,8 +70,7 @@ public abstract class MessagesSupport implements Messages {
 
     @Override
     public int hashCode() {
-        final Locale locale = getLocale();
-        int result = locale != null ? locale.hashCode() : 0;
+        int result = 0;
         for (final String id : getIdsOf(this)) {
             result = 31 * result + get(id).hashCode();
         }
@@ -75,10 +80,6 @@ public abstract class MessagesSupport implements Messages {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        final Locale locale = getLocale();
-        if (locale != null) {
-            sb.append('(').append(locale).append(')');
-        }
         sb.append('{');
         boolean firstMessage = true;
         for (final Message message : this) {

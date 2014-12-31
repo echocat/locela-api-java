@@ -50,7 +50,8 @@ public class MessageSupportUnitTest {
 
     @Test
     public void testToString() throws Exception {
-        assertThat(message("foo").toString(), is("anId = foo"));
+        assertThat(message("foo").toString(), is("anId: foo"));
+        assertThat(message("a", "foo", US).toString(), is("(en_US) a: foo"));
     }
 
     @Test

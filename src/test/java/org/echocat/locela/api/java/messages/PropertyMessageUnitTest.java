@@ -34,15 +34,15 @@ public class PropertyMessageUnitTest {
     @Test
     public void testGet() throws Exception {
         assertThat(messageFor(US, property("foo").set("bar")).get(), is("bar"));
-        assertThat(messageFor(GERMANY, property("foo").set("bar")).get(), is("bar"));
+        assertThat(messageFor(US, property("foo").set("bar")).get(), is("bar"));
 
         assertThat(messageFor(US, property("foo")).get(), is(""));
-        assertThat(messageFor(GERMANY, property("foo")).get(), is(""));
+        assertThat(messageFor(US, property("foo")).get(), is(""));
     }
 
     @Test
     public void testGetId() throws Exception {
         assertThat(messageFor(US, property("foo")).getId(), is("foo"));
-        assertThat(messageFor(GERMANY, property("foo")).getId(), is("foo"));
+        assertThat(messageFor(US, property("foo")).getId(), is("foo"));
     }
 }

@@ -18,7 +18,6 @@ import org.echocat.locela.api.java.properties.Properties;
 import org.echocat.locela.api.java.properties.Property;
 import org.junit.Test;
 
-import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
 import static org.echocat.jomon.testing.BaseMatchers.is;
 import static org.echocat.jomon.testing.BaseMatchers.isInstanceOf;
@@ -27,7 +26,7 @@ import static org.echocat.locela.api.java.messages.PropertiesMessages.messagesFo
 import static org.echocat.locela.api.java.messages.PropertyMessage.messageFor;
 import static org.echocat.locela.api.java.properties.StandardProperties.properties;
 import static org.echocat.locela.api.java.properties.StandardProperty.property;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class PropertiesMessagesUnitTest {
 
@@ -50,12 +49,6 @@ public class PropertiesMessagesUnitTest {
         PROPERTY4,
         TEXT_PROPERTY
     );
-
-    @Test
-    public void testGetLocale() throws Exception {
-        assertThat(messagesFor(US, PROPERTIES).getLocale(), is(US));
-        assertThat(messagesFor(GERMANY, PROPERTIES).getLocale(), is(GERMANY));
-    }
 
     @Test
     public void testGet() throws Exception {

@@ -16,15 +16,14 @@ package org.echocat.locela.api.java.messages;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Locale;
 
 public interface Messages extends Iterable<Message> {
 
-    @Nullable
-    public Locale getLocale();
-
     @Nonnull
     public Message get(@Nonnull String id);
+
+    @Nullable
+    public Message find(@Nonnull String id);
 
     public boolean contains(@Nonnull String id);
 

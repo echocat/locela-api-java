@@ -21,6 +21,8 @@ import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+
 public abstract class MessageSupport implements Message {
 
     @Nonnull
@@ -53,7 +55,13 @@ public abstract class MessageSupport implements Message {
 
     @Override
     public String toString() {
-        return getId() + " = " + get();
+        final StringBuilder sb = new StringBuilder();
+        final Locale locale = getLocale();
+        if (locale != null && !isEmpty(locale.getLanguage())) {
+            sb.append('(').append(locale).append(") ");
+        }
+        sb.append(getId()).append(": ").append(get());
+        return sb.toString();
     }
 
     @Override

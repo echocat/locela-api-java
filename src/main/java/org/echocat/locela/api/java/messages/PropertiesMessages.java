@@ -49,27 +49,16 @@ public class PropertiesMessages extends MessagesSupport {
         _formatterFactory = formatterFactory;
     }
 
-    @Nullable
-    @Override
-    public Locale getLocale() {
-        return _locale;
-    }
-
     @Nonnull
     @Override
-    public Message get(@Nonnull String id) {
+    public Message find(@Nonnull String id) {
         final Property<?> property = properties().get(id);
-        return property != null ? propertyMessageFor(property) : dummyMessageFor(id);
+        return property != null ? propertyMessageFor(property) : null;
     }
 
     @Nonnull
     protected PropertyMessage propertyMessageFor(@Nonnull Property<?> property) {
-        return new PropertyMessage(getLocale(), property, formatterFactory());
-    }
-
-    @Nonnull
-    protected DummyMessage dummyMessageFor(@Nonnull String id) {
-        return new DummyMessage(getLocale(), id);
+        return new PropertyMessage(locale(), property, formatterFactory());
     }
 
     @Override
@@ -86,13 +75,18 @@ public class PropertiesMessages extends MessagesSupport {
     }
 
     @Nonnull
-    public Properties<?> properties() {
+    protected Properties<?> properties() {
         return _properties;
     }
 
     @Nullable
-    public FormatterFactory<?> formatterFactory() {
+    protected FormatterFactory<?> formatterFactory() {
         return _formatterFactory;
+    }
+
+    @Nullable
+    protected Locale locale() {
+        return _locale;
     }
 
 }
