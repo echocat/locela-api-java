@@ -14,6 +14,8 @@
 
 package org.echocat.locela.api.java.format;
 
+import org.echocat.locela.api.java.properties.Properties;
+import org.echocat.locela.api.java.properties.Property;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -25,13 +27,12 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
 
 import static java.util.Locale.US;
 import static org.echocat.jomon.runtime.CollectionUtils.asImmutableList;
 import static org.echocat.jomon.testing.Assert.assertThat;
 import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
 
 public abstract class BundledMessageFormatTestSupport {
 
@@ -46,29 +47,29 @@ public abstract class BundledMessageFormatTestSupport {
         final Collection<Object[]> results = new ArrayList<>();
         if (locales != null && locales.length > 0) {
             for (final Locale locale : locales) {
-                final ResourceBundle bundle = getFormatToResultsFor(locale, name);
-                for (final String key : bundle.keySet()) {
-                    results.add(new Object[]{locale, key, bundle.getString(key)});
+                final Properties<String> properties = getFormatToResultsFor(locale, name);
+                for (final Property<String> property : properties) {
+                    results.add(new Object[]{locale, property.getId(), property.get()});
                 }
             }
         } else {
-            final ResourceBundle bundle = getFormatToResultsFor(null, name);
-            for (final String key : bundle.keySet()) {
-                results.add(new Object[]{US, key, bundle.getString(key)});
+            final Properties<String> properties = getFormatToResultsFor(null, name);
+            for (final Property<String> property : properties) {
+                results.add(new Object[]{US, property.getId(), property.get()});
             }
         }
         return asImmutableList(results);
     }
 
     @Nonnull
-    protected static ResourceBundle getFormatToResultsFor(@Nullable Locale locale, @Nonnull String name) throws IOException {
+    protected static Properties<String> getFormatToResultsFor(@Nullable Locale locale, @Nonnull String name) throws IOException {
         final String filename = "expectedFormatResults." + name + (locale != null ? "_" + locale : "") + ".properties";
         try (final InputStream is = BundledMessageFormatTestSupport.class.getResourceAsStream(filename)) {
             if (is == null) {
                 throw new AssertionError("The expected file '" + filename + "' could not be found.");
             }
             try (final Reader reader = new InputStreamReader(is, "UTF-8")) {
-                return new PropertyResourceBundle(reader);
+                return propertiesReader().read(reader);
             }
         }
     }

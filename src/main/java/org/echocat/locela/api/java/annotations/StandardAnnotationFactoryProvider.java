@@ -19,10 +19,7 @@ import org.echocat.locela.api.java.annotations.Annotation.Factory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.ServiceLoader;
+import java.util.*;
 
 import static org.echocat.jomon.runtime.CollectionUtils.asImmutableSet;
 import static org.echocat.jomon.runtime.CollectionUtils.asList;
@@ -47,8 +44,8 @@ public class StandardAnnotationFactoryProvider implements Annotation.Factory.Pro
     }
 
     public StandardAnnotationFactoryProvider(@Nullable Iterable<Factory<? extends Annotation>> providers) {
-        _idToFactory = new HashMap<>();
-        _typeToFactory = new HashMap<>();
+        _idToFactory = new LinkedHashMap<>();
+        _typeToFactory = new LinkedHashMap<>();
         if (providers != null) {
             for (final Factory<? extends Annotation> provider : providers) {
                 _idToFactory.put(provider.getId(), provider);
