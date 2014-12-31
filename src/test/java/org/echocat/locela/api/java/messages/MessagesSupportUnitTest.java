@@ -102,7 +102,11 @@ public class MessagesSupportUnitTest {
         assertThat(messages(
             "a", "1",
             "b", "2"
-        ).toString(), is("{a: 1, b: 2}"));
+        ).toString(), is("" +
+            "{\n" +
+            "    a: 1\n" +
+            "    b: 2\n" +
+            "}"));
 
         assertThat(messages().toString(), is("{}"));
     }

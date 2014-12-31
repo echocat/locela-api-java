@@ -84,11 +84,10 @@ public abstract class MessagesSupport implements Messages {
         boolean firstMessage = true;
         for (final Message message : this) {
             if (firstMessage) {
+                sb.append('\n');
                 firstMessage = false;
-            } else {
-                sb.append(", ");
             }
-            sb.append(message);
+            sb.append("    ").append(message).append('\n');
         }
         sb.append('}');
         return sb.toString();
