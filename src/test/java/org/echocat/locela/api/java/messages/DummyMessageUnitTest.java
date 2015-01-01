@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -28,6 +28,7 @@ public class DummyMessageUnitTest {
     @Test
     public void testGet() throws Exception {
         assertThat(new DummyMessage(US, "foo").get(), is(""));
+        assertThat(new DummyMessage("foo").get(), is(""));
     }
 
     @Test
@@ -40,11 +41,14 @@ public class DummyMessageUnitTest {
 
     @Test
     public void testGetLocale() throws Exception {
+        assertThat(new DummyMessage("foo").getLocale(), is(null));
+        assertThat(new DummyMessage(null, "foo").getLocale(), is(null));
         assertThat(new DummyMessage(GERMANY, "foo").getLocale(), is(GERMANY));
     }
 
     @Test
     public void testGetId() throws Exception {
         assertThat(new DummyMessage(US, "foo").getId(), is("foo"));
+        assertThat(new DummyMessage("foo").getId(), is("foo"));
     }
 }

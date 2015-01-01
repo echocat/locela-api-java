@@ -7,4 +7,4 @@ jdk:
   - oraclejdk7
   - oraclejdk8
 script:
-  - mvn -Dsurefire.useFile=false clean test
+  - mvn -Dsurefire.useFile=false clean verify

@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -26,6 +26,10 @@ public class DummyMessage extends MessageSupport {
     private final Locale _locale;
     @Nonnull
     private final String _id;
+
+    public DummyMessage(@Nonnull String id) {
+        this(null, id);
+    }
 
     public DummyMessage(@Nullable Locale locale, @Nonnull String id) {
         _locale = locale;
