@@ -21,6 +21,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static org.echocat.jomon.runtime.CollectionUtils.asList;
+
 public class LocaleAwareMessages extends MessagesSupport {
 
     @Nonnull
@@ -28,8 +30,12 @@ public class LocaleAwareMessages extends MessagesSupport {
     @Nonnull
     private final Map<Locale, Messages> _localeToMessages;
 
-    public LocaleAwareMessages(@Nullable Locale locale, @Nullable Locale fallbackLocale, @Nullable Map<Locale, Messages> localeToMessages) {
-        _locales = new LocaleHierarchy(locale, fallbackLocale);
+    public LocaleAwareMessages(@Nullable Locale locale, @Nullable Map<Locale, Messages> localeToMessages, @Nullable Locale... fallbackLocales) {
+        this(locale, localeToMessages, asList(fallbackLocales));
+    }
+
+    public LocaleAwareMessages(@Nullable Locale locale, @Nullable Map<Locale, Messages> localeToMessages, @Nullable Iterable<Locale> fallbackLocales) {
+        _locales = new LocaleHierarchy(locale, fallbackLocales);
         _localeToMessages = localeToMessages != null ? localeToMessages : Collections.<Locale, Messages>emptyMap();
     }
 

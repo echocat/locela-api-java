@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -19,7 +19,9 @@ import org.junit.Test;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
+import static java.util.Locale.FRANCE;
 import static java.util.Locale.US;
+import static org.echocat.jomon.runtime.CollectionUtils.asList;
 import static org.echocat.jomon.testing.Assert.assertThat;
 import static org.echocat.jomon.testing.BaseMatchers.is;
 
@@ -46,7 +48,7 @@ public class LocaleHierarchyIteratorUnitTest {
 
     @Test
     public void languageCountryVariantAndFallback() throws Exception {
-        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b", "c"), US);
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b", "c"), asList(US));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a", "b", "c")));
@@ -62,6 +64,31 @@ public class LocaleHierarchyIteratorUnitTest {
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(US));
+
+        assertThat(i.hasNext(), is(false));
+    }
+
+    @Test
+    public void languageCountryVariantAndFallbacks() throws Exception {
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b", "c"), asList(US, FRANCE));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(new Locale("a", "b", "c")));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(new Locale("a", "b")));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(new Locale("a")));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(null));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(US));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(FRANCE));
 
         assertThat(i.hasNext(), is(false));
     }
@@ -84,7 +111,7 @@ public class LocaleHierarchyIteratorUnitTest {
 
     @Test
     public void languageCountryAndFallback() throws Exception {
-        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b"), US);
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b"), asList(US));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a", "b")));
@@ -116,7 +143,7 @@ public class LocaleHierarchyIteratorUnitTest {
 
     @Test
     public void languageAndFallback() throws Exception {
-        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a"), US);
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a"), asList(US));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a")));
@@ -142,13 +169,29 @@ public class LocaleHierarchyIteratorUnitTest {
 
     @Test
     public void emptyAndFallback() throws Exception {
-        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(null, US);
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(null, asList(US));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(null));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(US));
+
+        assertThat(i.hasNext(), is(false));
+    }
+
+    @Test
+    public void emptyAndFallbacks() throws Exception {
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(null, asList(US, FRANCE));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(null));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(US));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(FRANCE));
 
         assertThat(i.hasNext(), is(false));
     }

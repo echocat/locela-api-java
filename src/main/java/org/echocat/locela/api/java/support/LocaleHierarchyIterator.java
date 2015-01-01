@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,8 +14,10 @@
 
 package org.echocat.locela.api.java.support;
 
+import org.echocat.jomon.runtime.CollectionUtils;
 import org.echocat.jomon.runtime.StringUtils;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.Locale;
@@ -23,27 +25,53 @@ import java.util.NoSuchElementException;
 
 public class LocaleHierarchyIterator implements Iterator<Locale> {
 
-    protected static final Locale END = new Locale("");
+    @Nonnull
+    private final Iterator<Locale> _fallbacks;
 
     @Nullable
-    private final Locale _fallback;
-
+    private Boolean _hasNext = true;
     @Nullable
-    private Locale _current;
+    private Locale _next;
+
+    private boolean _disassembleLocale = true;
 
     public LocaleHierarchyIterator(@Nullable Locale start) {
-        this(start, END);
+        this(start, (Iterator<Locale>) null);
     }
 
-    public LocaleHierarchyIterator(@Nullable Locale start, @Nullable Locale fallback) {
-        _current = start;
-        _fallback = fallback;
+    public LocaleHierarchyIterator(@Nullable Locale start, @Nullable Iterable<Locale> fallbacks) {
+        this(start, fallbacks != null ? fallbacks.iterator() : null);
+    }
+
+    public LocaleHierarchyIterator(@Nullable Locale start, @Nullable Iterator<Locale> fallbacks) {
+        _next = start;
+        _fallbacks = fallbacks != null ? fallbacks : CollectionUtils.<Locale>emptyIterator();
     }
 
     @Override
     public boolean hasNext() {
+        if (_hasNext == null && isDisassembleLocale() && _next != null) {
+            final String variant = _next.getVariant();
+            if (!StringUtils.isEmpty(variant)) {
+                _next = new Locale(_next.getLanguage(), _next.getCountry());
+            } else {
+                final String country = _next.getCountry();
+                if (!StringUtils.isEmpty(country)) {
+                    _next = new Locale(_next.getLanguage());
+                } else {
+                    _next = null;
+                    _disassembleLocale = false;
+                }
+            }
+            _hasNext = true;
+        }
+        if (_hasNext == null && fallbacks().hasNext()) {
+            _disassembleLocale = false;
+            _hasNext = true;
+            _next = fallbacks().next();
+        }
         // noinspection ObjectEquality
-        return _current != END;
+        return _hasNext != null && _hasNext;
     }
 
     @Override
@@ -51,25 +79,17 @@ public class LocaleHierarchyIterator implements Iterator<Locale> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        final Locale current = _current;
-        if (equals(_current, _fallback)) {
-            _current = END;
-        } else if (!isEmpty(_current)) {
-            final String variant = _current.getVariant();
-            if (!StringUtils.isEmpty(variant)) {
-                _current = new Locale(_current.getLanguage(), _current.getCountry());
-            } else {
-                final String country = _current.getCountry();
-                if (!StringUtils.isEmpty(country)) {
-                    _current = new Locale(_current.getLanguage());
-                } else {
-                    _current = null;
-                }
-            }
-        } else {
-            _current = _fallback;
-        }
-        return current;
+        _hasNext = null;
+        return _next;
+    }
+
+    @Nonnull
+    protected Iterator<Locale> fallbacks() {
+        return _fallbacks;
+    }
+
+    protected boolean isDisassembleLocale() {
+        return _disassembleLocale;
     }
 
     protected boolean isEmpty(@Nullable Locale locale) {

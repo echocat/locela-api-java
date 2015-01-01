@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -18,8 +18,10 @@ import org.junit.Test;
 
 import java.util.Locale;
 
+import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
 import static org.echocat.jomon.testing.Assert.assertThat;
+import static org.echocat.jomon.testing.BaseMatchers.is;
 import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
 
 public class LocaleHierarchyUnitTest {
@@ -94,7 +96,11 @@ public class LocaleHierarchyUnitTest {
             null,
             US
         ));
-   }
+    }
 
+    @Test
+    public void testToString() throws Exception {
+        assertThat(new LocaleHierarchy(GERMANY).toString(), is("[de_DE, de, null]"));
+    }
 
 }

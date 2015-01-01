@@ -57,37 +57,37 @@ public class LocaleAwareMessagesUnitTest {
 
     @Test
     public void testFind() throws Exception {
-        final Messages messages1 = new LocaleAwareMessages(GERMANY, US, LOCALE_TO_MESSAGES);
+        final Messages messages1 = new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US);
         assertThat(messages1.find("1"), is(MESSAGE1A));
         assertThat(messages1.find("2"), is(MESSAGE2B));
         assertThat(messages1.find("3"), is(MESSAGE3A));
         assertThat(messages1.find("4"), is(null));
 
-        final Messages messages2 = new LocaleAwareMessages(GERMAN, US, LOCALE_TO_MESSAGES);
+        final Messages messages2 = new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES, US);
         assertThat(messages2.find("1"), is(MESSAGE1B));
         assertThat(messages2.find("2"), is(MESSAGE2B));
         assertThat(messages2.find("3"), is(MESSAGE3C));
         assertThat(messages2.find("4"), is(null));
 
-        final Messages messages3 = new LocaleAwareMessages(null, US, LOCALE_TO_MESSAGES);
+        final Messages messages3 = new LocaleAwareMessages(null, LOCALE_TO_MESSAGES, US);
         assertThat(messages3.find("1"), is(null));
         assertThat(messages3.find("2"), is(MESSAGE2C));
         assertThat(messages3.find("3"), is(MESSAGE3C));
         assertThat(messages3.find("4"), is(null));
 
-        final Messages messages4 = new LocaleAwareMessages(GERMANY, null, LOCALE_TO_MESSAGES);
+        final Messages messages4 = new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES);
         assertThat(messages4.find("1"), is(MESSAGE1A));
         assertThat(messages4.find("2"), is(MESSAGE2B));
         assertThat(messages4.find("3"), is(MESSAGE3A));
         assertThat(messages4.find("4"), is(null));
 
-        final Messages messages5 = new LocaleAwareMessages(GERMAN, null, LOCALE_TO_MESSAGES);
+        final Messages messages5 = new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES);
         assertThat(messages5.find("1"), is(MESSAGE1B));
         assertThat(messages5.find("2"), is(MESSAGE2B));
         assertThat(messages5.find("3"), is(null));
         assertThat(messages5.find("4"), is(null));
 
-        final Messages messages6 = new LocaleAwareMessages(null, null, LOCALE_TO_MESSAGES);
+        final Messages messages6 = new LocaleAwareMessages(null, LOCALE_TO_MESSAGES);
         assertThat(messages6.find("1"), is(null));
         assertThat(messages6.find("2"), is(null));
         assertThat(messages6.find("3"), is(null));
@@ -96,37 +96,37 @@ public class LocaleAwareMessagesUnitTest {
 
     @Test
     public void testContains() throws Exception {
-        final Messages messages1 = new LocaleAwareMessages(GERMANY, US, LOCALE_TO_MESSAGES);
+        final Messages messages1 = new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US);
         assertThat(messages1.contains("1"), is(true));
         assertThat(messages1.contains("2"), is(true));
         assertThat(messages1.contains("3"), is(true));
         assertThat(messages1.contains("4"), is(false));
 
-        final Messages messages2 = new LocaleAwareMessages(GERMAN, US, LOCALE_TO_MESSAGES);
+        final Messages messages2 = new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES, US);
         assertThat(messages2.contains("1"), is(true));
         assertThat(messages2.contains("2"), is(true));
         assertThat(messages2.contains("3"), is(true));
         assertThat(messages2.contains("4"), is(false));
 
-        final Messages messages3 = new LocaleAwareMessages(null, US, LOCALE_TO_MESSAGES);
+        final Messages messages3 = new LocaleAwareMessages(null, LOCALE_TO_MESSAGES, US);
         assertThat(messages3.contains("1"), is(false));
         assertThat(messages3.contains("2"), is(true));
         assertThat(messages3.contains("3"), is(true));
         assertThat(messages3.contains("4"), is(false));
 
-        final Messages messages4 = new LocaleAwareMessages(GERMANY, null, LOCALE_TO_MESSAGES);
+        final Messages messages4 = new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES);
         assertThat(messages4.contains("1"), is(true));
         assertThat(messages4.contains("2"), is(true));
         assertThat(messages4.contains("3"), is(true));
         assertThat(messages4.contains("4"), is(false));
 
-        final Messages messages5 = new LocaleAwareMessages(GERMAN, null, LOCALE_TO_MESSAGES);
+        final Messages messages5 = new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES);
         assertThat(messages5.contains("1"), is(true));
         assertThat(messages5.contains("2"), is(true));
         assertThat(messages5.contains("3"), is(false));
         assertThat(messages5.contains("4"), is(false));
 
-        final Messages messages6 = new LocaleAwareMessages(null, null, LOCALE_TO_MESSAGES);
+        final Messages messages6 = new LocaleAwareMessages(null, LOCALE_TO_MESSAGES);
         assertThat(messages6.contains("1"), is(false));
         assertThat(messages6.contains("2"), is(false));
         assertThat(messages6.contains("3"), is(false));
@@ -135,40 +135,40 @@ public class LocaleAwareMessagesUnitTest {
 
     @Test
     public void testIterator() throws Exception {
-        assertThat(new LocaleAwareMessages(GERMANY, US, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1A, MESSAGE3A, MESSAGE2B));
-        assertThat(new LocaleAwareMessages(GERMAN, US, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1B, MESSAGE3C, MESSAGE2B));
-        assertThat(new LocaleAwareMessages(null, US, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE3C, MESSAGE2C));
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US), isEqualTo(MESSAGE1A, MESSAGE3A, MESSAGE2B));
+        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES, US), isEqualTo(MESSAGE1B, MESSAGE3C, MESSAGE2B));
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES, US), isEqualTo(MESSAGE3C, MESSAGE2C));
 
-        assertThat(new LocaleAwareMessages(GERMANY, null, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1A, MESSAGE3A, MESSAGE2B));
-        assertThat(new LocaleAwareMessages(GERMAN, null, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1B, MESSAGE2B));
-        assertThat(new LocaleAwareMessages(null, null, LOCALE_TO_MESSAGES), CollectionMatchers.<Message>isEqualTo());
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1A, MESSAGE3A, MESSAGE2B));
+        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1B, MESSAGE2B));
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES), CollectionMatchers.<Message>isEqualTo());
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testIteratorRemoveNotSupported() throws Exception {
-        new LocaleAwareMessages(GERMANY, null, LOCALE_TO_MESSAGES).iterator().remove();
+        new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES).iterator().remove();
     }
 
     @Test(expected = NoSuchElementException.class)
     public void testIteratorNoSuchElement() throws Exception {
-        new LocaleAwareMessages(null, null, LOCALE_TO_MESSAGES).iterator().next();
+        new LocaleAwareMessages(null, LOCALE_TO_MESSAGES).iterator().next();
     }
 
     @Test
     public void testToString() throws Exception {
-        assertThat(new LocaleAwareMessages(GERMANY, US, LOCALE_TO_MESSAGES).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(GERMAN, US, LOCALE_TO_MESSAGES).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE3C, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(null, US, LOCALE_TO_MESSAGES).toString(), is("null: " + messagesFor(MESSAGE3C, MESSAGE2C).toString()));
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B).toString()));
+        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES, US).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE3C, MESSAGE2B).toString()));
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES, US).toString(), is("null: " + messagesFor(MESSAGE3C, MESSAGE2C).toString()));
 
-        assertThat(new LocaleAwareMessages(GERMANY, null, LOCALE_TO_MESSAGES).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(GERMAN, null, LOCALE_TO_MESSAGES).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(null, null, LOCALE_TO_MESSAGES).toString(), is("null: " + messagesFor().toString()));
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B).toString()));
+        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE2B).toString()));
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES).toString(), is("null: " + messagesFor().toString()));
     }
 
     @Test
     public void testGetLocale() throws Exception {
-        assertThat(new LocaleAwareMessages(GERMANY, US, LOCALE_TO_MESSAGES).getLocale(), is(GERMANY));
-        assertThat(new LocaleAwareMessages(US, US, LOCALE_TO_MESSAGES).getLocale(), is(US));
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US).getLocale(), is(GERMANY));
+        assertThat(new LocaleAwareMessages(US, LOCALE_TO_MESSAGES, US).getLocale(), is(US));
     }
 
 
