@@ -54,16 +54,15 @@ public class LocaleHierarchyIterator implements Iterator<Locale> {
             final String variant = _next.getVariant();
             if (!StringUtils.isEmpty(variant)) {
                 _next = new Locale(_next.getLanguage(), _next.getCountry());
+                _hasNext = true;
             } else {
                 final String country = _next.getCountry();
                 if (!StringUtils.isEmpty(country)) {
                     _next = new Locale(_next.getLanguage());
-                } else {
-                    _next = null;
                     _disassembleLocale = false;
+                    _hasNext = true;
                 }
             }
-            _hasNext = true;
         }
         if (_hasNext == null && fallbacks().hasNext()) {
             _disassembleLocale = false;
@@ -90,14 +89,6 @@ public class LocaleHierarchyIterator implements Iterator<Locale> {
 
     protected boolean isDisassembleLocale() {
         return _disassembleLocale;
-    }
-
-    protected boolean isEmpty(@Nullable Locale locale) {
-        return locale == null || StringUtils.isEmpty(locale.getLanguage());
-    }
-
-    protected boolean equals(@Nullable Locale a, @Nullable Locale b) {
-        return a != null ? a.equals(b) : b == null;
     }
 
     @Override

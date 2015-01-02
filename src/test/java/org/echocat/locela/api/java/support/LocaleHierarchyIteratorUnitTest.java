@@ -40,9 +40,6 @@ public class LocaleHierarchyIteratorUnitTest {
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a")));
 
-        assertThat(i.hasNext(), is(true));
-        assertThat(i.next(), is(null));
-
         assertThat(i.hasNext(), is(false));
     }
 
@@ -60,9 +57,6 @@ public class LocaleHierarchyIteratorUnitTest {
         assertThat(i.next(), is(new Locale("a")));
 
         assertThat(i.hasNext(), is(true));
-        assertThat(i.next(), is(null));
-
-        assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(US));
 
         assertThat(i.hasNext(), is(false));
@@ -70,7 +64,7 @@ public class LocaleHierarchyIteratorUnitTest {
 
     @Test
     public void languageCountryVariantAndFallbacks() throws Exception {
-        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b", "c"), asList(US, FRANCE));
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(new Locale("a", "b", "c"), asList(null, US, FRANCE));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a", "b", "c")));
@@ -103,9 +97,6 @@ public class LocaleHierarchyIteratorUnitTest {
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a")));
 
-        assertThat(i.hasNext(), is(true));
-        assertThat(i.next(), is(null));
-
         assertThat(i.hasNext(), is(false));
     }
 
@@ -120,9 +111,6 @@ public class LocaleHierarchyIteratorUnitTest {
         assertThat(i.next(), is(new Locale("a")));
 
         assertThat(i.hasNext(), is(true));
-        assertThat(i.next(), is(null));
-
-        assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(US));
 
         assertThat(i.hasNext(), is(false));
@@ -135,9 +123,6 @@ public class LocaleHierarchyIteratorUnitTest {
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a")));
 
-        assertThat(i.hasNext(), is(true));
-        assertThat(i.next(), is(null));
-
         assertThat(i.hasNext(), is(false));
     }
 
@@ -147,9 +132,6 @@ public class LocaleHierarchyIteratorUnitTest {
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(new Locale("a")));
-
-        assertThat(i.hasNext(), is(true));
-        assertThat(i.next(), is(null));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(US));

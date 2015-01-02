@@ -31,8 +31,7 @@ public class LocaleHierarchyUnitTest {
         assertThat(new LocaleHierarchy(new Locale("a", "b", "c")), isEqualTo(
             new Locale("a", "b", "c"),
             new Locale("a", "b"),
-            new Locale("a"),
-            null
+            new Locale("a")
         ));
     }
 
@@ -42,7 +41,6 @@ public class LocaleHierarchyUnitTest {
             new Locale("a", "b", "c"),
             new Locale("a", "b"),
             new Locale("a"),
-            null,
             US
         ));
     }
@@ -51,14 +49,13 @@ public class LocaleHierarchyUnitTest {
     public void languageCountry() throws Exception {
         assertThat(new LocaleHierarchy(new Locale("a", "b")), isEqualTo(
             new Locale("a", "b"),
-            new Locale("a"),
-            null
+            new Locale("a")
         ));
     }
 
     @Test
     public void languageCountryAndFallback() throws Exception {
-        assertThat(new LocaleHierarchy(new Locale("a", "b"), US), isEqualTo(
+        assertThat(new LocaleHierarchy(new Locale("a", "b"), null, US), isEqualTo(
             new Locale("a", "b"),
             new Locale("a"),
             null,
@@ -69,8 +66,7 @@ public class LocaleHierarchyUnitTest {
     @Test
     public void language() throws Exception {
         assertThat(new LocaleHierarchy(new Locale("a")), isEqualTo(
-            new Locale("a"),
-            null
+            new Locale("a")
         ));
     }
 
@@ -78,7 +74,6 @@ public class LocaleHierarchyUnitTest {
     public void languageAndFallback() throws Exception {
         assertThat(new LocaleHierarchy(new Locale("a"), US), isEqualTo(
             new Locale("a"),
-            null,
             US
         ));
     }
@@ -100,7 +95,7 @@ public class LocaleHierarchyUnitTest {
 
     @Test
     public void testToString() throws Exception {
-        assertThat(new LocaleHierarchy(GERMANY).toString(), is("[de_DE, de, null]"));
+        assertThat(new LocaleHierarchy(GERMANY).toString(), is("[de_DE, de]"));
     }
 
 }

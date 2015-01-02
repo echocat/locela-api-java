@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -19,8 +19,6 @@ import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class IterationUtils {
-
-    private IterationUtils() {}
 
     @Nonnull
     public static <T> Iterator<T> toIterator(@Nonnull RemoveHandler<T> removeHandler, @Nonnull Iterable<? extends T> source) {
