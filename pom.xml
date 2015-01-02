@@ -5,7 +5,7 @@
   ~
   ~ Version: MPL 2.0
   ~
-  ~ echocat Locela - API for Java, Copyright (c) 2014 echocat
+  ~ echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
   ~
   ~ This Source Code Form is subject to the terms of the Mozilla Public
   ~ License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -63,6 +63,13 @@
                 <version>${versions.org.echocat.jomon}</version>
             </dependency>
 
+            <!-- Caching -->
+            <dependency>
+                <groupId>org.echocat.jomon</groupId>
+                <artifactId>cache</artifactId>
+                <version>${versions.org.echocat.jomon}</version>
+            </dependency>
+
             <!-- Testing -->
             <dependency>
                 <groupId>org.echocat.jomon</groupId>
@@ -77,6 +84,13 @@
         <dependency>
             <groupId>org.echocat.jomon</groupId>
             <artifactId>runtime</artifactId>
+        </dependency>
+
+        <!-- Caching -->
+        <dependency>
+            <groupId>org.echocat.jomon</groupId>
+            <artifactId>cache</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Testing -->
