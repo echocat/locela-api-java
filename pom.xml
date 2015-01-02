@@ -21,7 +21,7 @@
     <name>echocat Locela - API for Java</name>
     <groupId>org.echocat.locela.api</groupId>
     <artifactId>java</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <url>https://locela.echocat.org</url>
     <description>Java API of a localization framework for an easy and platform independent work.</description>
 
@@ -321,7 +321,7 @@
         <connection>scm:git://github.com/echocat/locela-api-java.git</connection>
         <developerConnection>scm:git:git@github.com:echocat/locela-api-java.git</developerConnection>
         <url>https://github.com/echocat/locela-api-java</url>
-        <tag>HEAD</tag>
+        <tag>version-1.0.0</tag>
     </scm>
 
 </project>
