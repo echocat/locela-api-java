@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -24,9 +24,27 @@ import java.util.Map;
 import static java.util.Locale.US;
 import static org.echocat.jomon.runtime.CollectionUtils.asImmutableMap;
 import static org.echocat.jomon.runtime.CollectionUtils.asList;
+import static org.echocat.locela.api.java.format.ChoiceFormatter.choiceFormatterFactory;
+import static org.echocat.locela.api.java.format.DateFormatter.dateFormatterFactory;
+import static org.echocat.locela.api.java.format.DateTimeFormatter.dateTimeFormatterFactory;
+import static org.echocat.locela.api.java.format.NumberFormatter.numberFormatterFactory;
+import static org.echocat.locela.api.java.format.TimeFormatter.timeFormatterFactory;
 
 @ThreadSafe
 public class MessageFormatterFactory implements FormatterFactory<MessageFormatter> {
+
+    private static final MessageFormatterFactory INSTANCE = new MessageFormatterFactory(
+        choiceFormatterFactory(),
+        dateFormatterFactory(),
+        dateTimeFormatterFactory(),
+        numberFormatterFactory(),
+        timeFormatterFactory()
+    );
+
+    @Nonnull
+    public static MessageFormatterFactory messageFormatterFactory() {
+        return INSTANCE;
+    }
 
     @Nonnull
     private final Map<String, FormatterFactory<?>> _idToFactory;

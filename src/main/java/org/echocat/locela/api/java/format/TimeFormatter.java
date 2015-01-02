@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -34,8 +34,12 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 @ThreadSafe
 public class TimeFormatter extends FormatterSupport {
 
-    @SuppressWarnings("ConstantNamingConvention")
-    public static final FormatterFactory<TimeFormatter> timeFormatterFactory = new Factory();
+    private static final FormatterFactory<TimeFormatter> FACTORY_INSTANCE = new Factory();
+
+    @Nonnull
+    public static FormatterFactory<TimeFormatter> timeFormatterFactory() {
+        return FACTORY_INSTANCE;
+    }
 
     @Nonnull
     private final DateFormat _format;

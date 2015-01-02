@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -26,34 +26,21 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.echocat.jomon.runtime.CollectionUtils.asImmutableList;
-import static org.echocat.locela.api.java.format.ChoiceFormatter.choiceFormatterFactory;
-import static org.echocat.locela.api.java.format.DateFormatter.dateFormatterFactory;
-import static org.echocat.locela.api.java.format.DateTimeFormatter.dateTimeFormatterFactory;
-import static org.echocat.locela.api.java.format.NumberFormatter.numberFormatFactory;
-import static org.echocat.locela.api.java.format.TimeFormatter.timeFormatterFactory;
+import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 
 @ThreadSafe
 public class MessageFormatter extends FormatterSupport implements Iterable<Formatter> {
 
     protected static final ThreadLocal<Value<Object>> CALLED_VALUE = new ThreadLocal<>();
 
-    @SuppressWarnings("ConstantNamingConvention")
-    public static final MessageFormatterFactory messageFormatterFactory = new MessageFormatterFactory(
-        choiceFormatterFactory,
-        dateFormatterFactory,
-        dateTimeFormatterFactory,
-        numberFormatFactory,
-        timeFormatterFactory
-    );
-
     protected static void formatInternal(@Nonnull Locale locale, @Nonnull String pattern, @Nullable Object value, @Nonnull Writer to) throws IOException {
-        messageFormatterFactory.createBy(locale, pattern).format(value, to);
+        messageFormatterFactory().createBy(locale, pattern).format(value, to);
     }
 
     @Nonnull
     protected static String formatInternal(@Nonnull Locale locale, @Nonnull String pattern, @Nullable Object value) {
         try (final StringWriter writer = new StringWriter()) {
-            messageFormatterFactory.createBy(locale, pattern).format(value, writer);
+            messageFormatterFactory().createBy(locale, pattern).format(value, writer);
             return writer.toString();
         } catch (final IOException e) {
             throw new RuntimeException(e.getMessage(), e);
@@ -91,7 +78,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
     private final List<Formatter> _subFormatter;
 
     public MessageFormatter(@Nonnull Locale locale, @Nullable String pattern) throws IllegalArgumentException {
-        this(locale, pattern, messageFormatterFactory);
+        this(locale, pattern, messageFormatterFactory());
     }
 
     public MessageFormatter(@Nonnull Locale locale, @Nullable String pattern, @Nullable FormatterFactory<?>... factories) throws IllegalArgumentException {

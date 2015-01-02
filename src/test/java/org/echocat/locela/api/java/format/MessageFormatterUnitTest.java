@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -29,7 +29,7 @@ import static org.echocat.jomon.runtime.CollectionUtils.asMap;
 import static org.echocat.jomon.testing.Assert.assertThat;
 import static org.echocat.jomon.testing.BaseMatchers.is;
 import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
-import static org.echocat.locela.api.java.format.MessageFormatter.messageFormatterFactory;
+import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.doReturn;
@@ -141,7 +141,7 @@ public class MessageFormatterUnitTest {
             new ParameterAwareFormatter(US, "0", new PassThruFormatter(US)),
             new StaticFormatter(US, "b")
         ));
-        assertThat(new MessageFormatter(US, "a{0}b", messageFormatterFactory).getSubFormatter(), CollectionMatchers.<Formatter>isEqualTo(
+        assertThat(new MessageFormatter(US, "a{0}b", messageFormatterFactory()).getSubFormatter(), CollectionMatchers.<Formatter>isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", new PassThruFormatter(US)),
             new StaticFormatter(US, "b")

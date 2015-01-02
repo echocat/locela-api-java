@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -35,8 +35,12 @@ import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.greate
 @ThreadSafe
 public class ChoiceFormatter extends FormatterSupport {
 
-    @SuppressWarnings("ConstantNamingConvention")
-    public static final FormatterFactory<ChoiceFormatter> choiceFormatterFactory = new Factory();
+    private static final FormatterFactory<ChoiceFormatter> FACTORY_INSTANCE = new Factory();
+
+    @Nonnull
+    public static FormatterFactory<ChoiceFormatter> choiceFormatterFactory() {
+        return FACTORY_INSTANCE;
+    }
 
     @Nonnull
     private final List<Condition> _conditions;

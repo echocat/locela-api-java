@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -28,7 +28,7 @@ import java.util.Locale;
 import static java.lang.Boolean.TRUE;
 import static java.util.Locale.US;
 import static org.echocat.jomon.runtime.util.ProducingType.nonBlocking;
-import static org.echocat.locela.api.java.format.MessageFormatter.messageFormatterFactory;
+import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 
 public abstract class FormattingMessageSupport extends MessageSupport {
 
@@ -42,7 +42,7 @@ public abstract class FormattingMessageSupport extends MessageSupport {
     private final Lazy<Boolean, Formatter> _formatter;
 
     public FormattingMessageSupport(@Nullable FormatterFactory<?> formatterFactory) {
-        _formatterFactory = formatterFactory != null ? formatterFactory : messageFormatterFactory;
+        _formatterFactory = formatterFactory != null ? formatterFactory : messageFormatterFactory();
         _formatterProducer = new FormatterProducer();
         _formatter = new Lazy<>(TRUE, _formatterProducer, nonBlocking);
     }

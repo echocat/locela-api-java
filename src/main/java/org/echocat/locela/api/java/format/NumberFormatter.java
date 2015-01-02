@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -36,8 +36,12 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 @ThreadSafe
 public class NumberFormatter extends FormatterSupport {
 
-    @SuppressWarnings("ConstantNamingConvention")
-    public static final FormatterFactory<NumberFormatter> numberFormatFactory = new Factory();
+    private static final FormatterFactory<NumberFormatter> FACTORY_INSTANCE = new Factory();
+
+    @Nonnull
+    public static FormatterFactory<NumberFormatter> numberFormatterFactory() {
+        return FACTORY_INSTANCE;
+    }
 
     @Nonnull
     private final NumberFormat _format;
