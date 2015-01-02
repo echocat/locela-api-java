@@ -35,6 +35,12 @@ public abstract class MessagesProviderSupport implements MessagesProvider {
 
     @Nullable
     @Override
+    public Messages provideBy(@Nullable Locale locale, @Nonnull Class<?> baseType, @Nonnull String baseFile) throws IOException {
+        return provideBy(locale, baseType.getClassLoader(), baseType.getPackage().getName().replace('.', '/') + "/" + baseFile);
+    }
+
+    @Nullable
+    @Override
     public Messages provideBy(@Nullable Locale locale, @Nonnull ClassLoader loader, @Nonnull String baseFile) throws IOException {
         return provideBy(locale, new ClassLoaderBased(loader), baseFile);
     }

@@ -26,6 +26,9 @@ public interface MessagesProvider {
     public Messages provideBy(@Nullable Locale locale, @Nonnull Class<?> type) throws IOException;
 
     @Nullable
+    public Messages provideBy(@Nullable Locale locale, @Nonnull Class<?> baseType, @Nonnull String baseFile) throws IOException;
+
+    @Nullable
     public Messages provideBy(@Nullable Locale locale, @Nonnull ClassLoader loader, @Nonnull String baseFile) throws IOException;
 
     @Nullable

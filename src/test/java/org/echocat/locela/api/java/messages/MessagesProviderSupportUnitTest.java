@@ -50,6 +50,21 @@ public class MessagesProviderSupportUnitTest {
     }
 
     @Test
+    public void provideByClassAndFile() throws Exception {
+        final MessagesProviderImpl provider = new MessagesProviderImpl();
+
+        assertThat(provider.provideBy(US, MessagesProviderSupportUnitTest.class, "foo1.properties"), isSameAs(FOO));
+        assertThat(provider.getLastLocale(), is(US));
+        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
+        assertThat(provider.getLastBaseFile(), is(MessagesProviderSupportUnitTest.class.getPackage().getName().replace('.', '/') + "/foo1.properties"));
+
+        assertThat(provider.provideBy(null, MessagesProviderImpl.class, "foo2.properties"), isSameAs(FOO));
+        assertThat(provider.getLastLocale(), is(null));
+        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderImpl.class.getClassLoader())));
+        assertThat(provider.getLastBaseFile(), is(MessagesProviderImpl.class.getPackage().getName().replace('.', '/') + "/foo2.properties"));
+    }
+
+    @Test
     public void provideByClasspath() throws Exception {
         final MessagesProviderImpl provider = new MessagesProviderImpl();
 
