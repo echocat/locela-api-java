@@ -19,12 +19,12 @@ import org.echocat.jomon.runtime.StringUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class LocaleHierarchyIterator implements Iterator<Locale> {
 
+    @Nonnull
+    private final Set<Locale> _alreadyReturned = new HashSet<>();
     @Nonnull
     private final Iterator<Locale> _fallbacks;
 
@@ -50,26 +50,38 @@ public class LocaleHierarchyIterator implements Iterator<Locale> {
 
     @Override
     public boolean hasNext() {
-        if (_hasNext == null && isDisassembleLocale() && _next != null) {
-            final String variant = _next.getVariant();
-            if (!StringUtils.isEmpty(variant)) {
-                _next = new Locale(_next.getLanguage(), _next.getCountry());
-                _hasNext = true;
-            } else {
-                final String country = _next.getCountry();
-                if (!StringUtils.isEmpty(country)) {
-                    _next = new Locale(_next.getLanguage());
+        while (_hasNext == null) {
+            if (_hasNext == null && isDisassembleLocale() && _next != null) {
+                final String variant = _next.getVariant();
+                if (!StringUtils.isEmpty(variant)) {
+                    _next = new Locale(_next.getLanguage(), _next.getCountry());
+                    _hasNext = true;
+                } else {
+                    final String country = _next.getCountry();
+                    if (!StringUtils.isEmpty(country)) {
+                        _next = new Locale(_next.getLanguage());
+                        _disassembleLocale = false;
+                        _hasNext = true;
+                    }
+                }
+            }
+            if (_hasNext == null) {
+                if (fallbacks().hasNext()) {
                     _disassembleLocale = false;
                     _hasNext = true;
+                    _next = fallbacks().next();
+                } else {
+                    _hasNext = false;
+                }
+            }
+            if (_hasNext) {
+                if (_alreadyReturned.contains(_next)) {
+                    _hasNext = null;
+                } else {
+                    _alreadyReturned.add(_next);
                 }
             }
         }
-        if (_hasNext == null && fallbacks().hasNext()) {
-            _disassembleLocale = false;
-            _hasNext = true;
-            _next = fallbacks().next();
-        }
-        // noinspection ObjectEquality
         return _hasNext != null && _hasNext;
     }
 

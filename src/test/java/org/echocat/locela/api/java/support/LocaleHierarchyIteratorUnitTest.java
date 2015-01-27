@@ -19,8 +19,7 @@ import org.junit.Test;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
-import static java.util.Locale.FRANCE;
-import static java.util.Locale.US;
+import static java.util.Locale.*;
 import static org.echocat.jomon.runtime.CollectionUtils.asList;
 import static org.echocat.jomon.testing.Assert.assertThat;
 import static org.echocat.jomon.testing.BaseMatchers.is;
@@ -171,6 +170,25 @@ public class LocaleHierarchyIteratorUnitTest {
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(US));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(FRANCE));
+
+        assertThat(i.hasNext(), is(false));
+    }
+
+    @Test
+    public void oneLocaleAndFallbackIsEqual() throws Exception {
+        final LocaleHierarchyIterator i = new LocaleHierarchyIterator(US, asList(FRENCH, ENGLISH, FRANCE));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(US));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(ENGLISH));
+
+        assertThat(i.hasNext(), is(true));
+        assertThat(i.next(), is(FRENCH));
 
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(FRANCE));

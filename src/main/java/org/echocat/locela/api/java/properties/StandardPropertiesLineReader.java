@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -57,6 +57,7 @@ public class StandardPropertiesLineReader implements PropertiesLineReader {
         final StringBuilder sb = new StringBuilder();
         boolean commentLine = false;
         boolean lastWasEscape = false;
+        boolean lastWasLfAfterEscape = false;
         boolean continuedLine = false;
         while (c != null && line == null) {
             if (c == ' ' || c == '\t') {
@@ -69,9 +70,10 @@ public class StandardPropertiesLineReader implements PropertiesLineReader {
                     sb.append(c);
                 }
             } else if (c == '\r' || c == '\n') {
-                if (lastWasEscape) {
+                if (lastWasEscape || lastWasLfAfterEscape) {
                     atBeginOfLine = true;
                     continuedLine = true;
+                    lastWasLfAfterEscape = c == '\r';
                 } else {
                     sb.setLength(lasLengthWithCharactersAtTheEnd);
                     line = toLine(sb, commentLine);

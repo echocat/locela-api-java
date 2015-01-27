@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -57,13 +57,15 @@ public class StandardPropertiesLineReaderUnitTest {
     @Test
     public void testEscapeAtEndOfLine() throws Exception {
         try (final PropertiesLineReader reader = new StandardPropertiesLineReader(new StringReader(
-            "text1\\\n" +
+            "text1\\\r\n" +
             "     text2\n"+
-            "text3\\ \n" +
-            "text4\n"), 5)) {
+            "text3\n" +
+            "text4\\ \n" +
+            "text5\n"), 5)) {
             assertThat(reader.read(), isProperty("text1text2"));
-            assertThat(reader.read(), isProperty("text3\\"));
-            assertThat(reader.read(), isProperty("text4"));
+            assertThat(reader.read(), isProperty("text3"));
+            assertThat(reader.read(), isProperty("text4\\"));
+            assertThat(reader.read(), isProperty("text5"));
             assertThat(reader.read(), isNull());
         }
     }
@@ -71,7 +73,7 @@ public class StandardPropertiesLineReaderUnitTest {
     @Test
     public void testEscapeAtEndOfLineWithPotentialComment() throws Exception {
         try (final PropertiesLineReader reader = new StandardPropertiesLineReader(new StringReader(
-            "text1\\\n" +
+            "text1\\\r\n" +
             "     #text2\n"), 5)) {
             assertThat(reader.read(), isProperty("text1#text2"));
             assertThat(reader.read(), isNull());

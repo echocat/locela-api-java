@@ -18,8 +18,9 @@ import org.junit.Test;
 
 import java.util.Locale;
 
-import static java.util.Locale.GERMANY;
-import static java.util.Locale.US;
+import static java.util.Locale.*;
+import static java.util.Locale.FRANCE;
+import static org.echocat.jomon.runtime.CollectionUtils.asList;
 import static org.echocat.jomon.testing.Assert.assertThat;
 import static org.echocat.jomon.testing.BaseMatchers.is;
 import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
@@ -92,6 +93,18 @@ public class LocaleHierarchyUnitTest {
             US
         ));
     }
+
+    @Test
+    public void oneLocaleAndFallbackIsEqual() throws Exception {
+        assertThat(new LocaleHierarchy(US, asList(FRENCH, ENGLISH, FRANCE)), isEqualTo(
+            US,
+            ENGLISH,
+            FRENCH,
+            FRANCE
+        ));
+    }
+
+
 
     @Test
     public void testToString() throws Exception {

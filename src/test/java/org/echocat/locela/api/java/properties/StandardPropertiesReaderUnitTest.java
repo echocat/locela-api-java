@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -253,7 +253,7 @@ public class StandardPropertiesReaderUnitTest {
     public void escapingAtEndOfLine() throws Exception {
         assertThat("a=1 \\\n" +
             "    b=2\n" +
-            "c=3\\\n" +
+            "c=3\\\r\n" +
             "d=4\n" +
             "e=5\\\n" +
             "  #f=6"
