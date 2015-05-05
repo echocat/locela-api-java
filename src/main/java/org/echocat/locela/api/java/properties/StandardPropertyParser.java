@@ -3,7 +3,7 @@
  *
  * Version: MPL 2.0
  *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
+ * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -102,6 +102,7 @@ public class StandardPropertyParser implements PropertyParser {
             final char c = characters[i];
             if (inEscape) {
                 i += handleEscapeCharacter(characters, i, sb);
+                inEscape = false;
                 started = true;
                 lastCharacterAtPosition = sb.length();
             } else if (c == ' ' || c == '\t') {
