@@ -20,9 +20,9 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.messages.StandardMessage.message;
 import static org.echocat.locela.api.java.messages.StandardMessages.messagesFor;
 

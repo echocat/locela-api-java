@@ -14,14 +14,16 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.echocat.jomon.runtime.util.IdEnabled;
 import org.echocat.locela.api.java.format.Formatter;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public interface Message extends Formatter, IdEnabled<String> {
+public interface Message extends Formatter {
+
+    @Nullable
+    public String getId();
 
     @Nonnull
     public String format(@Nullable Map<String, ?> values);

@@ -14,8 +14,6 @@
 
 package org.echocat.locela.api.java.format;
 
-import com.google.common.base.Predicate;
-
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -28,9 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.equals;
-import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.findOperatorFor;
-import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.greaterThan;
+import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.*;
 
 @ThreadSafe
 public class ChoiceFormatter extends FormatterSupport {
@@ -182,7 +178,7 @@ public class ChoiceFormatter extends FormatterSupport {
 
 
     @ThreadSafe
-    public static class Condition implements Predicate<Object> {
+    public static class Condition {
 
         @Nonnull
         private final String _test;
@@ -232,7 +228,6 @@ public class ChoiceFormatter extends FormatterSupport {
             return _subFormat;
         }
 
-        @Override
         public boolean apply(@Nullable Object value) {
             final boolean result;
             if (value == null) {
@@ -295,7 +290,7 @@ public class ChoiceFormatter extends FormatterSupport {
         }
     }
 
-    public static enum Operator {
+    public enum Operator {
         equals('#'),
         greaterThan('<');
 

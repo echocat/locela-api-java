@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
 
 @ThreadSafe
 public class AnnotationsFormatter {

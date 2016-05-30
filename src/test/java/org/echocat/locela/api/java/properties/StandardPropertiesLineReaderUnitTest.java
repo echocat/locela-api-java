@@ -26,7 +26,7 @@ import org.junit.Test;
 import javax.annotation.Nonnull;
 import java.io.StringReader;
 
-import static org.echocat.jomon.testing.BaseMatchers.isNull;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isNull;
 import static org.junit.Assert.assertThat;
 
 public class StandardPropertiesLineReaderUnitTest {

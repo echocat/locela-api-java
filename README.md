@@ -8,13 +8,9 @@ Java API of a localization framework for an easy and platform independent work.
 
 See [Central Repository](http://search.maven.org/#search|ga|1|g:org.echocat.locela.api%20AND%20a:java) for available downloads.
 
-If you use caching optimize resources also download [org.echocat.jomon.cache](http://search.maven.org/#search|ga|1|g:org.echocat.jomon%20AND%20a:cache).
-
 ## Dependency Management
 
 See [Central Repository](http://search.maven.org/#search|ga|1|g:org.echocat.locela.api%20AND%20a:java) for available versions.
-
-For avaible versions of org.echocat.jomon.cache also see [Central Repository](http://search.maven.org/#search|ga|1|g:org.echocat.jomon%20AND%20a:cache).
 
 ### Apache Maven
 
@@ -25,14 +21,6 @@ For avaible versions of org.echocat.jomon.cache also see [Central Repository](ht
     <version>${versions.org.echocat.locela.api.java}</version>
 </dependency>
 ```
-If you use caching optimize resources also include:
-```xml 
-<dependency>
-    <groupId>org.echocat.jomon</groupId>
-    <artifactId>cache</artifactId>
-    <version>${versions.org.echocat.jomon}</version>
-</dependency>
-```
 
 ### Apache Ivy
 
@@ -40,20 +28,10 @@ If you use caching optimize resources also include:
 <dependency org="org.echocat.locela.api" name="java" rev="${versions.org.echocat.locela.api.java}" />
 ```
 
-If you use caching optimize resources also include:
-```xml 
-<dependency org="org.echocat.jomon" name="cache" rev="${versions.org.echocat.jomon}" />
-```
-
 ### Grandle/Grails
 
 ```txt
 compile 'org.echocat.locela.api:java:${versions.org.echocat.locela.api.java}'
-```
-
-If you use caching optimize resources also include:
-```txt 
-compile 'org.echocat.jomon:cache:${versions.org.echocat.jomon}'
 ```
 # License
 

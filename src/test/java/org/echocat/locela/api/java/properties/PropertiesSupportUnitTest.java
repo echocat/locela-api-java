@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.properties;
 
-import org.echocat.jomon.runtime.CollectionUtils;
+import org.echocat.locela.api.java.support.CollectionUtils;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -23,10 +23,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.Assert.fail;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.Assert.fail;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 
 public class PropertiesSupportUnitTest {
 
@@ -153,6 +153,7 @@ public class PropertiesSupportUnitTest {
 
         public PropertiesImpl(@Nullable String... idToProperty) {
             _properties = new LinkedHashMap<>();
+            //noinspection ConfusingArgumentToVarargsMethod
             for (final Map.Entry<String, String> idAndProperty : CollectionUtils.<String, String>asImmutableMap(idToProperty).entrySet()) {
                 final Property<String> property = new StandardProperty<>(idAndProperty.getKey(), String.class);
                 property.set(idAndProperty.getValue());

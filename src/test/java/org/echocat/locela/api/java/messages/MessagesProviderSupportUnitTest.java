@@ -24,9 +24,9 @@ import java.io.IOException;
 import java.util.Locale;
 
 import static java.util.Locale.US;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.BaseMatchers.isSameAs;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isSameAs;
 import static org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased.fileSystemFileAccessor;
 import static org.echocat.locela.api.java.messages.StandardMessages.messagesFor;
 

@@ -27,10 +27,10 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static java.text.DateFormat.getDateInstance;
 import static java.util.Locale.US;
 import static org.echocat.locela.api.java.format.DateFormatter.Pattern.DEFAULT;
-import static java.text.DateFormat.getDateInstance;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
 
 @ThreadSafe
 public class DateFormatter extends FormatterSupport {

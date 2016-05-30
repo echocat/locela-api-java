@@ -14,10 +14,10 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.echocat.jomon.runtime.iterators.ConvertingIterator;
 import org.echocat.locela.api.java.format.FormatterFactory;
 import org.echocat.locela.api.java.properties.Properties;
 import org.echocat.locela.api.java.properties.Property;
+import org.echocat.locela.api.java.support.ConvertingIterator;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

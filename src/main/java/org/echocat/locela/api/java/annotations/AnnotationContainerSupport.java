@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.echocat.jomon.runtime.CollectionUtils.addAll;
+import static org.echocat.locela.api.java.support.CollectionUtils.addAll;
 import static org.echocat.locela.api.java.support.IterationUtils.toIterator;
 
 public abstract class AnnotationContainerSupport implements AnnotationContainer {

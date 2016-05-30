@@ -21,8 +21,8 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
 import java.util.*;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asImmutableSet;
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
+import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableSet;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
 
 @ThreadSafe
 public class StandardAnnotationFactoryProvider implements Annotation.Factory.Provider {

@@ -23,6 +23,9 @@
         <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="html" />
         <option name="JSP_PREFER_COMMA_SEPARATED_IMPORT_LIST" value="true" />
         <option name="WRAP_COMMENTS" value="true" />
+        <MultiMarkdownCodeStyleSettings>
+          <option name="RIGHT_MARGIN" value="72" />
+        </MultiMarkdownCodeStyleSettings>
         <XML>
           <option name="XML_KEEP_BLANK_LINES" value="1" />
           <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />

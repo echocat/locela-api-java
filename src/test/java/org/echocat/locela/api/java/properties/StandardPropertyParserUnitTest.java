@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.properties.StandardPropertyParser.propertyParser;
 
 public class StandardPropertyParserUnitTest {

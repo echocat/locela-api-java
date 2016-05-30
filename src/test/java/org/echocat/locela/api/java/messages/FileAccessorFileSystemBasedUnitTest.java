@@ -14,8 +14,8 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.apache.commons.io.IOUtils;
 import org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased;
+import org.echocat.locela.api.java.support.IOUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -23,8 +23,8 @@ import org.junit.rules.TemporaryFolder;
 import javax.annotation.Nonnull;
 import java.io.*;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased.fileSystemFileAccessor;
 
 public class FileAccessorFileSystemBasedUnitTest {

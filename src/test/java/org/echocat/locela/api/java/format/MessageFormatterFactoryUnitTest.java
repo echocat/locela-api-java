@@ -14,8 +14,8 @@
 
 package org.echocat.locela.api.java.format;
 
-import org.echocat.jomon.testing.BaseMatchers;
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.BaseMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.junit.Test;
 
 import java.util.Locale;
@@ -44,7 +44,7 @@ public class MessageFormatterFactoryUnitTest {
         doReturn("foo").when(other).getId();
         final MessageFormatterFactory messageFormatterFactory = new MessageFormatterFactory(other);
         //noinspection RedundantTypeArguments
-        assertThat(messageFormatterFactory.getFactories(), CollectionMatchers.<FormatterFactory<?>>isEqualTo(messageFormatterFactory, other));
+        assertThat(messageFormatterFactory.getFactories(), IterableMatchers.<FormatterFactory<?>>isEqualTo(messageFormatterFactory, other));
     }
 
     @Test(expected = IllegalStateException.class)

@@ -23,9 +23,9 @@ import java.io.Writer;
 import java.util.*;
 import java.util.Map.Entry;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asMap;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.support.CollectionUtils.asMap;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.messages.MessagesSupportUnitTest.MessageImpl.message;
 import static org.echocat.locela.api.java.messages.MessagesSupportUnitTest.MessagesImpl.messages;
 
@@ -120,6 +120,7 @@ public class MessagesSupportUnitTest {
 
         @Nonnull
         protected static Messages messages(@Nullable String... idToContent) {
+            //noinspection ConfusingArgumentToVarargsMethod
             final Map<String, String> idToPlainMessage = asMap(idToContent);
             final List<Message> messages = new ArrayList<>();
             for (final Entry<String, String> idAndPlainMessage : idToPlainMessage.entrySet()) {

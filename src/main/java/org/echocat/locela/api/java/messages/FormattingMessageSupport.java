@@ -14,8 +14,6 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.echocat.jomon.runtime.util.Value.Lazy;
-import org.echocat.jomon.runtime.util.ValueProducer;
 import org.echocat.locela.api.java.format.Formatter;
 import org.echocat.locela.api.java.format.FormatterFactory;
 
@@ -25,9 +23,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Locale;
 
-import static java.lang.Boolean.TRUE;
 import static java.util.Locale.US;
-import static org.echocat.jomon.runtime.util.ProducingType.nonBlocking;
 import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 
 public abstract class FormattingMessageSupport extends MessageSupport {
@@ -36,15 +32,11 @@ public abstract class FormattingMessageSupport extends MessageSupport {
 
     @Nonnull
     private final FormatterFactory<?> _formatterFactory;
-    @Nonnull
-    private final ValueProducer<Boolean, Formatter> _formatterProducer;
-    @Nonnull
-    private final Lazy<Boolean, Formatter> _formatter;
+    @Nullable
+    private Formatter _formatter;
 
     public FormattingMessageSupport(@Nullable FormatterFactory<?> formatterFactory) {
         _formatterFactory = formatterFactory != null ? formatterFactory : messageFormatterFactory();
-        _formatterProducer = new FormatterProducer();
-        _formatter = new Lazy<>(TRUE, _formatterProducer, nonBlocking);
     }
 
     @Override
@@ -54,18 +46,13 @@ public abstract class FormattingMessageSupport extends MessageSupport {
 
     @Nonnull
     protected Formatter formatter() {
-        return _formatter.getValue();
-    }
-
-    protected class FormatterProducer implements ValueProducer<Boolean, Formatter> {
-
-        @Nullable
-        @Override
-        public Formatter produce(@Nullable Boolean key) throws Exception {
-            final Locale locale = getLocale();
-            return _formatterFactory.createBy(locale != null ? locale : DEFAULT_LOCALE, get(), _formatterFactory);
+        synchronized (this) {
+            if (_formatter == null) {
+                final Locale locale = getLocale();
+                _formatter = _formatterFactory.createBy(locale != null ? locale : DEFAULT_LOCALE, get(), _formatterFactory);
+            }
+            return _formatter;
         }
-
     }
 
 }

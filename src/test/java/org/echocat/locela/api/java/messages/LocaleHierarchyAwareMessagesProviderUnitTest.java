@@ -23,10 +23,10 @@ import java.util.Locale;
 import java.util.Map;
 
 import static java.util.Locale.*;
-import static org.echocat.jomon.runtime.CollectionUtils.asImmutableList;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.BaseMatchers.isEmpty;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isEmpty;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.messages.StandardMessagesProvider.messagesProvider;
 import static org.junit.Assert.assertThat;
 

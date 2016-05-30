@@ -20,10 +20,10 @@ import java.util.Locale;
 
 import static java.util.Locale.*;
 import static java.util.Locale.FRANCE;
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 
 public class LocaleHierarchyUnitTest {
 

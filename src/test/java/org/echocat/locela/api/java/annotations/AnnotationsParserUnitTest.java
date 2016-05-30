@@ -14,10 +14,10 @@
 
 package org.echocat.locela.api.java.annotations;
 
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.junit.Test;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.annotations.AnnotationsParser.annotationsParser;
 
 public class AnnotationsParserUnitTest {
@@ -26,24 +26,24 @@ public class AnnotationsParserUnitTest {
 
     @Test
     public void comment() throws Exception {
-        assertThat(PARSER.parse("foo bar"), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(PARSER.parse("foo bar"), IterableMatchers.<Annotation>isEqualTo(
             new CommentAnnotation("foo bar")
         ));
-        assertThat(PARSER.parse("foo\nbar"), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(PARSER.parse("foo\nbar"), IterableMatchers.<Annotation>isEqualTo(
             new CommentAnnotation("foo\nbar")
         ));
     }
 
     @Test
     public void foo() throws Exception {
-        assertThat(PARSER.parse("  @foo(true,-123.456,\"bar\")"), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(PARSER.parse("  @foo(true,-123.456,\"bar\")"), IterableMatchers.<Annotation>isEqualTo(
             new FooAnnotation(true, -123.456D, "bar")
         ));
     }
 
     @Test
     public void bar() throws Exception {
-        assertThat(PARSER.parse("  @bar()"), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(PARSER.parse("  @bar()"), IterableMatchers.<Annotation>isEqualTo(
             new BarAnnotation()
         ));
     }
@@ -58,7 +58,7 @@ public class AnnotationsParserUnitTest {
                 "@boolean(true)\n" +
                 "@double(1.2)\n" +
                 "another comment"
-        ), CollectionMatchers.isEqualTo(
+        ), IterableMatchers.isEqualTo(
             new CommentAnnotation("foo bar"),
             new FooAnnotation(false, 1D, "bar"),
             new BarAnnotation(),

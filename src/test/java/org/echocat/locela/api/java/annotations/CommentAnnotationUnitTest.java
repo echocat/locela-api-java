@@ -16,9 +16,9 @@ package org.echocat.locela.api.java.annotations;
 
 import org.junit.Test;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.BaseMatchers.isNot;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isNot;
 
 public class CommentAnnotationUnitTest {
 

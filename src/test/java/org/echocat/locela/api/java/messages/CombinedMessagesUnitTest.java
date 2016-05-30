@@ -16,8 +16,8 @@ package org.echocat.locela.api.java.messages;
 
 import org.junit.Test;
 
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.messages.StandardMessage.message;
 import static org.echocat.locela.api.java.messages.StandardMessages.messagesFor;
 import static org.junit.Assert.assertThat;

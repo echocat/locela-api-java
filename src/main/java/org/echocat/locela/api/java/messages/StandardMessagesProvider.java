@@ -14,11 +14,11 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.echocat.jomon.runtime.StringUtils;
 import org.echocat.locela.api.java.format.FormatterFactory;
 import org.echocat.locela.api.java.properties.Properties;
 import org.echocat.locela.api.java.properties.PropertiesReader;
 import org.echocat.locela.api.java.properties.StandardPropertiesReader;
+import org.echocat.locela.api.java.support.StringUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,8 +26,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Locale;
 
-import static org.apache.commons.io.FilenameUtils.getExtension;
-import static org.apache.commons.io.FilenameUtils.removeExtension;
+import static org.echocat.locela.api.java.support.FilenameUtils.getExtension;
+import static org.echocat.locela.api.java.support.FilenameUtils.removeExtension;
 import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 
 public class StandardMessagesProvider extends MessagesProviderSupport {

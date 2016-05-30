@@ -21,9 +21,9 @@ import org.junit.Test;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.equals;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.Operator.greaterThan;
 import static java.util.Locale.US;
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.mockito.Mockito.mock;
 
 public class ChoiceFormatterUnitTest {

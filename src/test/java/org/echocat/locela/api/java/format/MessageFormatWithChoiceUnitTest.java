@@ -24,7 +24,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static org.echocat.locela.api.java.format.MessageFormatter.format;
-import static org.echocat.jomon.runtime.CollectionUtils.asImmutableMap;
+import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableMap;
 
 @RunWith(Parameterized.class)
 public class MessageFormatWithChoiceUnitTest extends BundledMessageFormatTestSupport {

@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Iterator;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
 
 public class CombinedMessages extends MessagesSupport {
 

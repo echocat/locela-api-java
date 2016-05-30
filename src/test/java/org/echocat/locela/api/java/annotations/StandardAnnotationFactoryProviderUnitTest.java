@@ -14,8 +14,8 @@
 
 package org.echocat.locela.api.java.annotations;
 
-import org.echocat.jomon.testing.BaseMatchers;
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.BaseMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.echocat.locela.api.java.annotations.Annotation.Factory;
 import org.echocat.locela.api.java.annotations.Annotation.Factory.Provider.UnknownAnnotationException;
 import org.echocat.locela.api.java.annotations.GenericAnnotation.BooleanAnnotationFactory;
@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.echocat.jomon.testing.Assert.fail;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.testing.Assert.fail;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.annotations.StandardAnnotationFactoryProvider.findDefaultFactories;
 import static org.junit.Assert.assertThat;
 
@@ -41,7 +41,7 @@ public class StandardAnnotationFactoryProviderUnitTest {
     @Test
     public void testFindDefaultFactories() throws Exception {
         final Collection<Class<?>> typesOfFactories = extractTypesOf(findDefaultFactories());
-        assertThat(typesOfFactories, CollectionMatchers.<Class<?>>containsAllItemsOf(
+        assertThat(typesOfFactories, IterableMatchers.<Class<?>>containsAllItemsOf(
             CommentAnnotation.Factory.class,
             FooAnnotation.Factory.class,
             BarAnnotation.Factory.class,

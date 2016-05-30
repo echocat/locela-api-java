@@ -14,8 +14,6 @@
 
 package org.echocat.locela.api.java.format;
 
-import org.echocat.jomon.runtime.util.Value;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
@@ -24,14 +22,14 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.*;
 
-import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.echocat.jomon.runtime.CollectionUtils.asImmutableList;
 import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
+import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
 
 @ThreadSafe
 public class MessageFormatter extends FormatterSupport implements Iterable<Formatter> {
 
-    protected static final ThreadLocal<Value<Object>> CALLED_VALUE = new ThreadLocal<>();
+    protected static final ThreadLocal<Object> CALLED_VALUE = new ThreadLocal<>();
 
     protected static void formatInternal(@Nonnull Locale locale, @Nonnull String pattern, @Nullable Object value, @Nonnull Writer to) throws IOException {
         messageFormatterFactory().createBy(locale, pattern).format(value, to);
@@ -204,20 +202,14 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
 
     @Override
     public void format(@Nullable final Object value, @Nonnull Writer to) throws IOException {
-        final Value<Object> calledValue = CALLED_VALUE.get();
+        final Object calledValue = CALLED_VALUE.get();
         final Object targetValue;
         if (calledValue == null) {
             // noinspection ConstantConditions
-            CALLED_VALUE.set(new Value<Object>() {
-                @Nonnull
-                @Override
-                public Object getValue() {
-                    return value;
-                }
-            });
+            CALLED_VALUE.set(value);
             targetValue = value;
         } else {
-            targetValue = calledValue.getValue();
+            targetValue = calledValue;
         }
         try {
             for (final Formatter formatter : this) {

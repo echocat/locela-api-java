@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.junit.Test;
 
 import java.util.Locale;
@@ -24,10 +24,10 @@ import java.util.NoSuchElementException;
 import static java.util.Locale.GERMAN;
 import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
-import static org.echocat.jomon.runtime.CollectionUtils.asImmutableMap;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableMap;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.messages.StandardMessage.message;
 import static org.echocat.locela.api.java.messages.StandardMessages.messagesFor;
 
@@ -141,7 +141,7 @@ public class LocaleAwareMessagesUnitTest {
 
         assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1A, MESSAGE3A, MESSAGE2B));
         assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1B, MESSAGE2B));
-        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES), CollectionMatchers.<Message>isEqualTo());
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES), IterableMatchers.<Message>isEqualTo());
     }
 
     @Test(expected = UnsupportedOperationException.class)

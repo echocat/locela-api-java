@@ -29,9 +29,9 @@ import java.util.Collection;
 import java.util.Locale;
 
 import static java.util.Locale.US;
-import static org.echocat.jomon.runtime.CollectionUtils.asImmutableList;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
 
 public abstract class BundledMessageFormatTestSupport {

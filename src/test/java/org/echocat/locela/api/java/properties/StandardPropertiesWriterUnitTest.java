@@ -23,8 +23,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.StringWriter;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.properties.StandardProperties.properties;
 import static org.echocat.locela.api.java.properties.StandardPropertiesWriter.propertyWriter;
 import static org.echocat.locela.api.java.properties.StandardProperty.property;

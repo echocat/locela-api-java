@@ -14,8 +14,8 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.apache.commons.io.IOUtils;
 import org.echocat.locela.api.java.messages.FileAccessor.InputStreamBased;
+import org.echocat.locela.api.java.support.IOUtils;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -24,8 +24,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 
 
 public class FileAccessorInputStreamBasedUnitTest {

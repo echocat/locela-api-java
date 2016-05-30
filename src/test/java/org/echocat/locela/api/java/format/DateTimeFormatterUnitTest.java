@@ -25,8 +25,8 @@ import static org.echocat.locela.api.java.format.DateTimeFormatter.Pattern.LONG;
 import static org.echocat.locela.api.java.format.DateTimeFormatter.Pattern.MEDIUM;
 import static org.echocat.locela.api.java.format.DateTimeFormatter.Pattern.SHORT;
 import static java.util.Locale.US;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 
 public class DateTimeFormatterUnitTest {
 

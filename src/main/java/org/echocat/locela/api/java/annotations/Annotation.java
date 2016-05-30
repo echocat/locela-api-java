@@ -14,24 +14,20 @@
 
 package org.echocat.locela.api.java.annotations;
 
-import org.echocat.jomon.runtime.util.IdEnabled;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public interface Annotation extends IdEnabled<String> {
+public interface Annotation {
 
     @Nonnull
-    @Override
     public String getId();
 
     @Nonnull
     public Object[] getArguments();
 
-    public interface Factory<T extends Annotation> extends IdEnabled<String> {
+    public interface Factory<T extends Annotation> {
 
         @Nonnull
-        @Override
         public String getId();
 
         @Nonnull

@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Locale;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
 
 public class LocaleHierarchy implements Iterable<Locale> {
 

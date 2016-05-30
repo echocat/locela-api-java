@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.format;
 
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.echocat.locela.api.java.format.MessageFormatter.ParameterAwareFormatter;
 import org.echocat.locela.api.java.format.MessageFormatter.PassThruFormatter;
 import org.echocat.locela.api.java.format.MessageFormatter.StaticFormatter;
@@ -24,11 +24,11 @@ import java.io.StringWriter;
 
 import static org.echocat.locela.api.java.format.MessageFormatter.format;
 import static java.util.Locale.US;
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.runtime.CollectionUtils.asMap;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.support.CollectionUtils.asMap;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -136,12 +136,12 @@ public class MessageFormatterUnitTest {
 
     @Test
     public void plainConstructor() throws Exception {
-        assertThat(new MessageFormatter(US, "a{0}b").getSubFormatter(), CollectionMatchers.<Formatter>isEqualTo(
+        assertThat(new MessageFormatter(US, "a{0}b").getSubFormatter(), IterableMatchers.<Formatter>isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", new PassThruFormatter(US)),
             new StaticFormatter(US, "b")
         ));
-        assertThat(new MessageFormatter(US, "a{0}b", messageFormatterFactory()).getSubFormatter(), CollectionMatchers.<Formatter>isEqualTo(
+        assertThat(new MessageFormatter(US, "a{0}b", messageFormatterFactory()).getSubFormatter(), IterableMatchers.<Formatter>isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", new PassThruFormatter(US)),
             new StaticFormatter(US, "b")
@@ -154,7 +154,7 @@ public class MessageFormatterUnitTest {
         final FormatterFactory<?> formatterFactory = mock(FormatterFactory.class);
         doReturn("foo").when(formatterFactory).getId();
         doReturn(formatter).when(formatterFactory).createBy(eq(US), eq((String) null), any(FormatterFactory.class));
-        assertThat(new MessageFormatter(US, "a{0,foo}b", formatterFactory).getSubFormatter(), CollectionMatchers.<Formatter>isEqualTo(
+        assertThat(new MessageFormatter(US, "a{0,foo}b", formatterFactory).getSubFormatter(), IterableMatchers.<Formatter>isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", formatter),
             new StaticFormatter(US, "b")

@@ -15,16 +15,16 @@
 package org.echocat.locela.api.java.annotations;
 
 
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.junit.Test;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.Assert.fail;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.Assert.fail;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 
 public class AnnotationContainerSupportUnitTest {
 
@@ -51,7 +51,7 @@ public class AnnotationContainerSupportUnitTest {
             COMMENT_ANNOTATION1,
             COMMENT_ANNOTATION2
         );
-        assertThat(container.annotations(Annotation.class), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(Annotation.class), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             BAR_ANNOTATION1,
@@ -59,30 +59,30 @@ public class AnnotationContainerSupportUnitTest {
             COMMENT_ANNOTATION1,
             COMMENT_ANNOTATION2
         ));
-        assertThat(container.annotations(FooAnnotation.class), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(FooAnnotation.class), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2
         ));
         // noinspection rawtypes
-        assertThat(container.annotations(GenericAnnotation.class), CollectionMatchers.<GenericAnnotation>isEqualTo());
+        assertThat(container.annotations(GenericAnnotation.class), IterableMatchers.<GenericAnnotation>isEqualTo());
     }
 
     @Test
     public void testAdd() throws Exception {
         final ContainerImpl container = new ContainerImpl();
-        assertThat(container.annotations(), CollectionMatchers.<Annotation>isEqualTo());
+        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo());
 
         container.addAnnotation(FOO_ANNOTATION1);
         container.addAnnotation(FOO_ANNOTATION2);
         container.addAnnotation(FOO_ANNOTATION3);
-        assertThat(container.annotations(), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             FOO_ANNOTATION3
         ));
 
         container.addAnnotations(BAR_ANNOTATION1, BAR_ANNOTATION2, BAR_ANNOTATION3);
-        assertThat(container.annotations(), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             FOO_ANNOTATION3,
@@ -92,7 +92,7 @@ public class AnnotationContainerSupportUnitTest {
         ));
 
         container.addAnnotations(asList(COMMENT_ANNOTATION1, COMMENT_ANNOTATION2, COMMENT_ANNOTATION3));
-        assertThat(container.annotations(), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             FOO_ANNOTATION3,
@@ -125,7 +125,7 @@ public class AnnotationContainerSupportUnitTest {
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(FOO_ANNOTATION1));
         i.remove();
-        assertThat(container.annotations(), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             FOO_ANNOTATION2,
             BAR_ANNOTATION1,
             BAR_ANNOTATION2,
@@ -136,7 +136,7 @@ public class AnnotationContainerSupportUnitTest {
         assertThat(i.hasNext(), is(true));
         assertThat(i.next(), is(FOO_ANNOTATION2));
         i.remove();
-        assertThat(container.annotations(), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             BAR_ANNOTATION1,
             BAR_ANNOTATION2,
             COMMENT_ANNOTATION1,
@@ -160,7 +160,7 @@ public class AnnotationContainerSupportUnitTest {
             COMMENT_ANNOTATION2,
             COMMENT_ANNOTATION3
         );
-        assertThat(container.annotations(), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             FOO_ANNOTATION3,
@@ -173,7 +173,7 @@ public class AnnotationContainerSupportUnitTest {
         ));
 
         container.removeAnnotations(BarAnnotation.class);
-        assertThat(container.annotations(), CollectionMatchers.isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             FOO_ANNOTATION3,
@@ -183,24 +183,24 @@ public class AnnotationContainerSupportUnitTest {
         ));
 
         container.removeAnnotations(FooAnnotation.class);
-        assertThat(container.annotations(), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo(
             COMMENT_ANNOTATION1,
             COMMENT_ANNOTATION2,
             COMMENT_ANNOTATION3
         ));
 
         container.removeAnnotations(FooAnnotation.class);
-        assertThat(container.annotations(), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo(
             COMMENT_ANNOTATION1,
             COMMENT_ANNOTATION2,
             COMMENT_ANNOTATION3
         ));
 
         container.removeAnnotations(CommentAnnotation.class);
-        assertThat(container.annotations(), CollectionMatchers.<Annotation>isEqualTo());
+        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo());
 
         container.removeAnnotations(CommentAnnotation.class);
-        assertThat(container.annotations(), CollectionMatchers.<Annotation>isEqualTo());
+        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo());
     }
 
     protected static class ContainerImpl extends AnnotationContainerSupport {

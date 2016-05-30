@@ -17,8 +17,8 @@ package org.echocat.locela.api.java.annotations;
 import org.echocat.locela.api.java.annotations.Annotation.Factory.Provider.UnknownAnnotationException;
 import org.junit.Test;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 
 public class AnnotationFactoryUnitTest {
 

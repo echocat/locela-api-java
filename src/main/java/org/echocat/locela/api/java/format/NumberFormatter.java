@@ -31,7 +31,7 @@ import static org.echocat.locela.api.java.format.NumberFormatter.Pattern.DEFAULT
 import static java.text.NumberFormat.getCurrencyInstance;
 import static java.text.NumberFormat.getIntegerInstance;
 import static java.text.NumberFormat.getPercentInstance;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
 
 @ThreadSafe
 public class NumberFormatter extends FormatterSupport {

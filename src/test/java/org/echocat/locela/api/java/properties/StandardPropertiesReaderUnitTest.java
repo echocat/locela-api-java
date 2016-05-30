@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.properties;
 
-import org.echocat.jomon.testing.CollectionMatchers;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.echocat.locela.api.java.annotations.BarAnnotation;
 import org.echocat.locela.api.java.annotations.CommentAnnotation;
 import org.echocat.locela.api.java.annotations.GenericAnnotation;
@@ -31,10 +31,10 @@ import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.runtime.CollectionUtils.asMap;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.support.CollectionUtils.asMap;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
 
 public class StandardPropertiesReaderUnitTest {
@@ -61,8 +61,8 @@ public class StandardPropertiesReaderUnitTest {
             "#\n" +
             "\n" +
             "b=2");
-        assertThat(properties.get("a").annotations(), CollectionMatchers.<Annotation>isEqualTo(new CommentAnnotation("this is a comment")));
-        assertThat(properties.get("b").annotations(), CollectionMatchers.<Annotation>isEqualTo(new CommentAnnotation("this is another comment")));
+        assertThat(properties.get("a").annotations(), IterableMatchers.<Annotation>isEqualTo(new CommentAnnotation("this is a comment")));
+        assertThat(properties.get("b").annotations(), IterableMatchers.<Annotation>isEqualTo(new CommentAnnotation("this is another comment")));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class StandardPropertiesReaderUnitTest {
             new CommentAnnotation("and some more comment")
         ));
         final Property<?> b = properties.get("b");
-        assertThat(asList(b.annotations()), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(asList(b.annotations()), IterableMatchers.<Annotation>isEqualTo(
             new CommentAnnotation("this is another comment\nand more line")
         ));
     }
@@ -110,9 +110,9 @@ public class StandardPropertiesReaderUnitTest {
             new CommentAnnotation("and some more comment")
         ));
         final Property<?> a = properties.get("a");
-        assertThat(asList(a.annotations()), CollectionMatchers.<Annotation>isEqualTo());
+        assertThat(asList(a.annotations()), IterableMatchers.<Annotation>isEqualTo());
         final Property<?> b = properties.get("b");
-        assertThat(asList(b.annotations()), CollectionMatchers.<Annotation>isEqualTo());
+        assertThat(asList(b.annotations()), IterableMatchers.<Annotation>isEqualTo());
     }
 
     @Test
@@ -148,7 +148,7 @@ public class StandardPropertiesReaderUnitTest {
             new CommentAnnotation("and another comment for this property")
         ));
         final Property<?> b = properties.get("b");
-        assertThat(asList(b.annotations()), CollectionMatchers.<Annotation>isEqualTo(
+        assertThat(asList(b.annotations()), IterableMatchers.<Annotation>isEqualTo(
             new CommentAnnotation("this is another comment\nand more line")
         ));
     }
@@ -313,6 +313,7 @@ public class StandardPropertiesReaderUnitTest {
         return new TypeSafeMatcher<String>() {
             @Override
             protected boolean matchesSafely(@Nonnull String source) {
+                //noinspection ConfusingArgumentToVarargsMethod
                 final Map<String, String> expectedContent = asMap(keyToValue);
                 //noinspection CollectionDeclaredAsConcreteClass
                 final Map<String, String> properties = toPropertiesMap(source);
@@ -322,6 +323,7 @@ public class StandardPropertiesReaderUnitTest {
 
             @Override
             public void describeTo(@Nonnull Description description) {
+                //noinspection ConfusingArgumentToVarargsMethod
                 description.appendText("are properties ").appendValue(asMap(keyToValue));
             }
 

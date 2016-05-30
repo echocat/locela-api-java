@@ -14,8 +14,8 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.apache.commons.io.IOUtils;
 import org.echocat.locela.api.java.messages.FileAccessor.ClassLoaderBased;
+import org.echocat.locela.api.java.support.IOUtils;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -23,9 +23,9 @@ import java.io.Reader;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.BaseMatchers.isNot;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isNot;
 import static org.echocat.locela.api.java.messages.FileAccessor.ClassLoaderBased.classPathFileAccessor;
 
 public class FileAccessorClassLoaderBasedUnitTest {

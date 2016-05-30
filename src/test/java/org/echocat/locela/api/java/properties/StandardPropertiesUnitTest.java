@@ -18,9 +18,9 @@ import org.echocat.locela.api.java.annotations.Annotation;
 import org.echocat.locela.api.java.annotations.FooAnnotation;
 import org.junit.Test;
 
-import static org.echocat.jomon.runtime.CollectionUtils.asList;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.CollectionMatchers.isEqualTo;
+import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.properties.StandardProperty.property;
 import static org.junit.Assert.assertThat;
 

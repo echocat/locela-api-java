@@ -29,11 +29,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import static org.echocat.jomon.runtime.CollectionUtils.countElementsOf;
-import static org.echocat.jomon.testing.Assert.assertThat;
-import static org.echocat.jomon.testing.BaseMatchers.is;
-import static org.echocat.jomon.testing.BaseMatchers.isInstanceOf;
-import static org.echocat.jomon.testing.BaseMatchers.isNotNull;
+import static org.echocat.locela.api.java.support.CollectionUtils.countElementsOf;
+import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isInstanceOf;
+import static org.echocat.locela.api.java.testing.BaseMatchers.isNotNull;
 import static org.echocat.locela.api.java.messages.StandardMessagesProvider.messagesProvider;
 import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
 
