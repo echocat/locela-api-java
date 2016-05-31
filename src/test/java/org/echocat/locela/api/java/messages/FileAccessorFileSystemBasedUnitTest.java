@@ -15,7 +15,7 @@
 package org.echocat.locela.api.java.messages;
 
 import org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased;
-import org.echocat.locela.api.java.support.IOUtils;
+import org.echocat.locela.api.java.utils.IOUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;

@@ -20,9 +20,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
-import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.StringUtils.isEmpty;
 
 public class StandardLocaleNormelizer implements LocaleNormelizer {
 

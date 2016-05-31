@@ -23,8 +23,8 @@ import java.io.Writer;
 import java.util.*;
 
 import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
-import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.utils.StringUtils.isEmpty;
 
 @ThreadSafe
 public class MessageFormatter extends FormatterSupport implements Iterable<Formatter> {

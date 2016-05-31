@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.annotations;
 
-import org.echocat.locela.api.java.support.IterationUtils.RemoveHandler;
+import org.echocat.locela.api.java.utils.IterationUtils.RemoveHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.addAll;
-import static org.echocat.locela.api.java.support.IterationUtils.toIterator;
+import static org.echocat.locela.api.java.utils.CollectionUtils.addAll;
+import static org.echocat.locela.api.java.utils.IterationUtils.toIterator;
 
 public abstract class AnnotationContainerSupport implements AnnotationContainer {
 

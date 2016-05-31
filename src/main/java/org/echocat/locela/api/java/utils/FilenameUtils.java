@@ -12,7 +12,7 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.support;
+package org.echocat.locela.api.java.utils;
 
 public class FilenameUtils {
 

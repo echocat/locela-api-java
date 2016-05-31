@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.countElementsOf;
+import static org.echocat.locela.api.java.utils.CollectionUtils.countElementsOf;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.BaseMatchers.isInstanceOf;

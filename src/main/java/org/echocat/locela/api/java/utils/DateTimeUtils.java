@@ -12,7 +12,7 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.support;
+package org.echocat.locela.api.java.utils;
 
 import javax.annotation.Nonnull;
 import java.text.ParseException;

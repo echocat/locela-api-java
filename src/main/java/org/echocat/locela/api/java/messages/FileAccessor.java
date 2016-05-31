@@ -23,7 +23,7 @@ import java.nio.charset.Charset;
 
 import static java.lang.System.getProperty;
 import static java.nio.charset.Charset.forName;
-import static org.echocat.locela.api.java.support.ResourceUtils.closeQuietly;
+import static org.echocat.locela.api.java.utils.ResourceUtils.closeQuietly;
 
 public interface FileAccessor {
 

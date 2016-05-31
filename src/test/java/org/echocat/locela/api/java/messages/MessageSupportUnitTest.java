@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.messages;
 
-import org.echocat.locela.api.java.support.CollectionUtils;
+import org.echocat.locela.api.java.utils.CollectionUtils;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -26,7 +26,7 @@ import java.util.Locale;
 
 import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.messages.MessageSupportUnitTest.MessageImpl.message;

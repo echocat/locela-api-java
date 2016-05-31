@@ -24,8 +24,8 @@ import java.io.StringWriter;
 
 import static org.echocat.locela.api.java.format.MessageFormatter.format;
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
-import static org.echocat.locela.api.java.support.CollectionUtils.asMap;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;

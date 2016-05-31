@@ -12,7 +12,7 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.support;
+package org.echocat.locela.api.java.utils;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 import static java.util.Collections.*;
-import static org.echocat.locela.api.java.support.ResourceUtils.closeQuietlyIfAutoCloseable;
+import static org.echocat.locela.api.java.utils.ResourceUtils.closeQuietlyIfAutoCloseable;
 
 public class CollectionUtils {
 
@@ -98,7 +98,7 @@ public class CollectionUtils {
             try {
                 addAll(to, elements.iterator());
             } finally {
-                closeQuietlyIfAutoCloseable(elements);
+                ResourceUtils.closeQuietlyIfAutoCloseable(elements);
             }
         }
         return to;
@@ -112,7 +112,7 @@ public class CollectionUtils {
                     to.add(elements.next());
                 }
             } finally {
-                closeQuietlyIfAutoCloseable(elements);
+                ResourceUtils.closeQuietlyIfAutoCloseable(elements);
             }
         }
         return to;
@@ -165,7 +165,7 @@ public class CollectionUtils {
                 }
             }
         } finally {
-            closeQuietlyIfAutoCloseable(iterator);
+            ResourceUtils.closeQuietlyIfAutoCloseable(iterator);
         }
         return result;
     }
@@ -180,6 +180,15 @@ public class CollectionUtils {
         } else {
             result = new ArrayList<>();
             addAll(result, in);
+        }
+        return result;
+    }
+
+    @Nonnull
+    public static <T> List<T> asList(@Nullable Enumeration<T> in) {
+        final List<T> result = new ArrayList<>();
+        while (in != null && in.hasMoreElements()) {
+            result.add(in.nextElement());
         }
         return result;
     }
@@ -234,7 +243,7 @@ public class CollectionUtils {
                 }
             }
         } finally {
-            closeQuietlyIfAutoCloseable(iterator);
+            ResourceUtils.closeQuietlyIfAutoCloseable(iterator);
         }
         return count;
     }

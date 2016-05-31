@@ -12,12 +12,14 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.support;
+package org.echocat.locela.api.java.utils;
 
-import java.util.Iterator;
+public class StringUtils {
 
-public interface CloseableIterator<T> extends AutoCloseable, Iterator<T> {
 
-    @Override
-    void close();
+    public static boolean isEmpty(String what) {
+        return what == null || what.isEmpty();
+    }
+
+    private StringUtils() {}
 }

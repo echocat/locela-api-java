@@ -21,7 +21,7 @@ import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Map;
 
-import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.utils.StringUtils.isEmpty;
 
 public abstract class MessageSupport implements Message {
 

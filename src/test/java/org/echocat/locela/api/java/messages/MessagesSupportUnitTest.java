@@ -23,7 +23,7 @@ import java.io.Writer;
 import java.util.*;
 import java.util.Map.Entry;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.asMap;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.messages.MessagesSupportUnitTest.MessageImpl.message;

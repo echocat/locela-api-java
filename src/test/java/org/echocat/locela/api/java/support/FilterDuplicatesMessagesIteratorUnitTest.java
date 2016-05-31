@@ -20,7 +20,7 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.messages.StandardMessage.message;

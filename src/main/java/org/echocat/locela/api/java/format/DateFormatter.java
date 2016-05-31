@@ -30,7 +30,7 @@ import java.util.Map;
 import static java.text.DateFormat.getDateInstance;
 import static java.util.Locale.US;
 import static org.echocat.locela.api.java.format.DateFormatter.Pattern.DEFAULT;
-import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.utils.StringUtils.isEmpty;
 
 @ThreadSafe
 public class DateFormatter extends FormatterSupport {

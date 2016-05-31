@@ -14,7 +14,7 @@
 
 package org.echocat.locela.api.java.properties;
 
-import org.echocat.locela.api.java.support.CollectionUtils;
+import org.echocat.locela.api.java.utils.CollectionUtils;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;

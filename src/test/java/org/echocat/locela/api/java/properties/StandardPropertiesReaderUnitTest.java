@@ -31,8 +31,8 @@ import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
-import static org.echocat.locela.api.java.support.CollectionUtils.asMap;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;

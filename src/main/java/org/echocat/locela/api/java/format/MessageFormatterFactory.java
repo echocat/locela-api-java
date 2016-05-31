@@ -22,8 +22,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableMap;
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableMap;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.format.ChoiceFormatter.choiceFormatterFactory;
 import static org.echocat.locela.api.java.format.DateFormatter.dateFormatterFactory;
 import static org.echocat.locela.api.java.format.DateTimeFormatter.dateTimeFormatterFactory;

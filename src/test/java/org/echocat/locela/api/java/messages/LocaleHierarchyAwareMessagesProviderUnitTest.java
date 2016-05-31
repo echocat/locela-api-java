@@ -23,7 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static java.util.Locale.*;
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.BaseMatchers.isEmpty;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;

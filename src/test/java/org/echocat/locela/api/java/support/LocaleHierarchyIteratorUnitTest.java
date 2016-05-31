@@ -20,7 +20,7 @@ import java.util.Locale;
 import java.util.NoSuchElementException;
 
 import static java.util.Locale.*;
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 

@@ -24,7 +24,7 @@ import java.util.NoSuchElementException;
 import static java.util.Locale.GERMAN;
 import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableMap;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableMap;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;

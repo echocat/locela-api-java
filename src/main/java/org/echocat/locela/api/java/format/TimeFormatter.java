@@ -29,7 +29,7 @@ import java.util.Map;
 import static java.util.Locale.US;
 import static org.echocat.locela.api.java.format.TimeFormatter.Pattern.DEFAULT;
 import static java.text.DateFormat.getTimeInstance;
-import static org.echocat.locela.api.java.support.StringUtils.isEmpty;
+import static org.echocat.locela.api.java.utils.StringUtils.isEmpty;
 
 @ThreadSafe
 public class TimeFormatter extends FormatterSupport {

@@ -21,7 +21,7 @@ import org.junit.Test;
 import javax.annotation.Nullable;
 import java.util.Iterator;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.Assert.fail;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;

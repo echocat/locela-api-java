@@ -23,10 +23,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Iterator;
 
 import static java.util.Arrays.asList;
-import static org.echocat.locela.api.java.support.CollectionUtils.asCollection;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asCollection;
 
 public class IterableMatchers {
 

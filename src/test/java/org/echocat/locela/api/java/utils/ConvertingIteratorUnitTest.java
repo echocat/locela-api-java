@@ -12,15 +12,14 @@
  * *** END LICENSE BLOCK *****
  ****************************************************************************************/
 
-package org.echocat.locela.api.java.support;
+package org.echocat.locela.api.java.utils;
 
+import org.echocat.locela.api.java.testing.Assert;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
 
 public class ConvertingIteratorUnitTest {
 
@@ -58,10 +57,10 @@ public class ConvertingIteratorUnitTest {
 
         int i = 0;
         while(convertingIterator.hasNext()) {
-            assertThat(convertingIterator.next(), equalTo(i + "x"));
+            Assert.assertThat(convertingIterator.next(), CoreMatchers.equalTo(i + "x"));
             i++;
         }
-        assertThat(i, equalTo(MAX_VALUES));
+        Assert.assertThat(i, CoreMatchers.equalTo(MAX_VALUES));
     }
 
 }

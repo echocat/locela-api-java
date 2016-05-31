@@ -26,7 +26,7 @@ import java.util.Locale;
 import static org.echocat.locela.api.java.format.MessageFormatter.format;
 import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.support.DateTimeUtils.parseIsoDate;
+import static org.echocat.locela.api.java.utils.DateTimeUtils.parseIsoDate;
 
 @RunWith(Parameterized.class)
 public class MessageFormatWithDatesUnitTest extends BundledMessageFormatTestSupport {

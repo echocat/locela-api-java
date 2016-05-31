@@ -272,7 +272,7 @@
     <inspection_tool class="NoButtonGroup" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="NoLabelFor" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="NoScrollPane" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="NonBooleanMethodNameMayNotStartWithQuestion" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+    <inspection_tool class="NonBooleanMethodNameMayNotStartWithQuestion" enabled="true" level="INFO" enabled_by_default="true">
       <option name="questionString" value="is,can,has,should,could,will,shall,contains,equals,startsWith,endsWith" />
       <option name="ignoreBooleanMethods" value="false" />
       <option name="onlyWarnOnBaseMethods" value="true" />

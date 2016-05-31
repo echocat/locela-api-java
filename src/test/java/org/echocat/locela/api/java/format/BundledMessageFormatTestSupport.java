@@ -29,7 +29,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
 import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;

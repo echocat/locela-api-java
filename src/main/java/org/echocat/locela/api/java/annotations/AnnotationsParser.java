@@ -20,7 +20,7 @@ import javax.annotation.concurrent.ThreadSafe;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.echocat.locela.api.java.support.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
 
 @ThreadSafe
 public class AnnotationsParser {

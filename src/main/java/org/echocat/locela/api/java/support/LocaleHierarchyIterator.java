@@ -14,6 +14,9 @@
 
 package org.echocat.locela.api.java.support;
 
+import org.echocat.locela.api.java.utils.CollectionUtils;
+import org.echocat.locela.api.java.utils.StringUtils;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
