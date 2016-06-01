@@ -173,8 +173,8 @@ public class MessageProviderBasedMessageSource implements MessageSource {
         if (result == null) {
             _lock.writeLock().lock();
             try {
-                result = createMessagesFor(locale);
-                _cache.put(locale, result);
+                result = createMessagesFor(targetLocale);
+                _cache.put(targetLocale, result);
                 while (_cache.size() > _maxCacheEntries) {
                     final Iterator<Locale> i = _cache.keySet().iterator();
                     if (i.hasNext()) {
