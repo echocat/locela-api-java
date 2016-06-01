@@ -24,21 +24,20 @@ import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
 import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.utils.StringUtils.isEmpty;
 
-public class StandardLocaleNormelizer implements LocaleNormelizer {
+public class StandardLocaleNormalizer implements LocaleNormalizer {
 
     private static final Locale NONE = new Locale("");
-    private static final Locale[] CONTAINS_NULL = {null};
 
     @Nonnull
     private final List<Locale> _allowedLocales;
     @Nullable
     private final Locale _defaultLocale;
 
-    public StandardLocaleNormelizer(@Nullable Locale defaultLocale, @Nullable Locale... allowedLocales) {
+    public StandardLocaleNormalizer(@Nullable Locale defaultLocale, @Nullable Locale... allowedLocales) {
         this(defaultLocale, asList(allowedLocales));
     }
 
-    public StandardLocaleNormelizer(@Nullable Locale defaultLocale, @Nullable Iterable<Locale> allowedLocales) {
+    public StandardLocaleNormalizer(@Nullable Locale defaultLocale, @Nullable Iterable<Locale> allowedLocales) {
         _defaultLocale = defaultLocale;
         _allowedLocales = asImmutableList(allowedLocales);
     }
@@ -51,9 +50,6 @@ public class StandardLocaleNormelizer implements LocaleNormelizer {
             result = input;
         } else {
             final Iterator<Locale> i = new LocaleHierarchyIterator(input);
-            if (i.hasNext()) {
-                i.next();
-            }
             // noinspection ObjectEquality
             while (i.hasNext() && result == NONE) {
                 final Locale subLocale = i.next();

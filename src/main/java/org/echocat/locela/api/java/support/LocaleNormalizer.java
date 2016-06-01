@@ -17,7 +17,7 @@ package org.echocat.locela.api.java.support;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-public interface LocaleNormelizer {
+public interface LocaleNormalizer {
 
     @Nullable
     public Locale normelize(@Nullable Locale input);
