@@ -40,9 +40,3 @@ echocat Locela Java API is licensed under [MPL 2.0](http://mozilla.org/MPL/2.0/)
 # Want to help?
 
 You are welcome. [Fork](https://github.com/echocat/locela-api-java/fork) or [contact](mailto:contact@echocat.org) us.
-
-# Thanks
-
-Many thanks to the companies which helps to develop this great project.
-
-* [Lautsprecher Teufel GmbH](https://teufelaudio.com) which uses this project for their [Raumfeld product series](https://raumfeld.com).
