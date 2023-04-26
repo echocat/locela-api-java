@@ -13,6 +13,10 @@ Java API of a localization framework for an easy and platform independent work.
 ```xml
 <repositories>
     <repository>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
         <id>echocat</id>
         <url>https://packages.echocat.org/maven</url>
     </repository>

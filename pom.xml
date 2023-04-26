@@ -284,6 +284,11 @@
     </distributionManagement>
 
     <repositories>
+        <!-- We duplicate central here to ensure that at first the central is used, before our repository -->
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
         <repository>
             <id>echocat</id>
             <url>https://packages.echocat.org/maven</url>
