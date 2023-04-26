@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import javax.annotation.Nonnull;
@@ -43,8 +29,8 @@ public class LocaleHierarchyAwareMessagesProvider extends MessagesProviderSuppor
 
     public LocaleHierarchyAwareMessagesProvider(@Nullable MessagesProvider delegate, @Nullable Iterable<Locale> locales, @Nullable Iterable<Locale> fallbackLocales) {
         _delegate = delegate != null ? delegate : messagesProvider();
-        _locales = locales != null ? locales : Collections.<Locale>emptyList();
-        _fallbackLocales = fallbackLocales != null ? fallbackLocales : Collections.<Locale>emptyList();
+        _locales = locales != null ? locales : Collections.emptyList();
+        _fallbackLocales = fallbackLocales != null ? fallbackLocales : Collections.emptyList();
     }
 
     @Nullable

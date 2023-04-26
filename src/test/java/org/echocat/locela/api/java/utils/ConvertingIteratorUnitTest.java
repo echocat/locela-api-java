@@ -1,25 +1,12 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2016 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.utils;
 
-import org.echocat.locela.api.java.testing.Assert;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ConvertingIteratorUnitTest {
 
@@ -48,19 +35,21 @@ public class ConvertingIteratorUnitTest {
             }
         };
 
-        final Iterator<String> convertingIterator = new ConvertingIterator<String, String>(originalInput) {
+        try (final ConvertingIterator<String, String> ci = new ConvertingIterator<String, String>(originalInput) {
             @Override
             protected String convert(String input) {
                 return input + "x";
             }
-        };
+        }) {
 
-        int i = 0;
-        while(convertingIterator.hasNext()) {
-            Assert.assertThat(convertingIterator.next(), CoreMatchers.equalTo(i + "x"));
-            i++;
+            int i = 0;
+            while(ci.hasNext()) {
+                assertThat(ci.next(), CoreMatchers.equalTo(i + "x"));
+                i++;
+            }
+            assertThat(i, CoreMatchers.equalTo(MAX_VALUES));
         }
-        Assert.assertThat(i, CoreMatchers.equalTo(MAX_VALUES));
+
     }
 
 }

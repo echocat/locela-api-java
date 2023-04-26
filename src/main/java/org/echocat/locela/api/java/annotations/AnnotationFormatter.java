@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.annotations;
 
 import javax.annotation.Nonnull;
@@ -54,7 +40,7 @@ public class AnnotationFormatter {
         } else if (argument instanceof Number) {
             to.append(((Number) argument).doubleValue());
         } else {
-            throw new IllegalArgumentException("Could not format arguments of type " + argument.getClass().getName() + " for annoation " + annotation.getId() + ".");
+            throw new IllegalArgumentException("Could not format arguments of type " + argument.getClass().getName() + " for annotation " + annotation.getId() + ".");
         }
     }
 

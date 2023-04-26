@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2016 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.testing;
 
 import org.hamcrest.Description;
@@ -23,20 +9,21 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.Objects;
 
 import static java.util.Arrays.asList;
 import static org.echocat.locela.api.java.utils.CollectionUtils.asCollection;
 
+@SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
 public class IterableMatchers {
 
     @SafeVarargs
     @Nonnull
     public static <T> Matcher<Iterable<T>> isEqualTo(@Nullable T... expectedItems) {
-        return isEqualTo(expectedItems != null ? asList(expectedItems) : Collections.<T>emptyList());
+        return isEqualTo(expectedItems != null ? asList(expectedItems) : Collections.emptyList());
     }
-    
+
     @Nonnull
     public static <T> Matcher<Iterable<T>> isEqualTo(@Nonnull final Iterable<T> expectedItems) {
         return new TypeSafeMatcher<Iterable<T>>() {
@@ -50,7 +37,7 @@ public class IterableMatchers {
                     while (expectedItemsIterator.hasNext() && itemsIterator.hasNext() && result) {
                         final T expectedItem = expectedItemsIterator.next();
                         final T item = itemsIterator.next();
-                        result = expectedItem != null ? expectedItem.equals(item) : item == null;
+                        result = Objects.equals(expectedItem, item);
                     }
                     if (result) {
                         result = !expectedItemsIterator.hasNext() && !itemsIterator.hasNext();
@@ -67,11 +54,11 @@ public class IterableMatchers {
             }
         };
     }
-    
+
     @SafeVarargs
     @Nonnull
     public static <T> Matcher<Iterable<T>> containsAllItemsOf(@Nullable T... expectedItems) {
-        return containsAllItemsOf(expectedItems != null ? asList(expectedItems) : Collections.<T>emptyList());
+        return containsAllItemsOf(expectedItems != null ? asList(expectedItems) : Collections.emptyList());
     }
 
     @Nonnull
@@ -109,7 +96,7 @@ public class IterableMatchers {
     @SafeVarargs
     @Nonnull
     public static <T> Matcher<Iterable<T>> containsItemsOf(@Nullable T... expectedItems) {
-        return containsItemsOf(expectedItems != null ? asList(expectedItems) : Collections.<T>emptyList());
+        return containsItemsOf(expectedItems != null ? asList(expectedItems) : Collections.emptyList());
     }
 
     @Nonnull

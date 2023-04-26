@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.format;
 
 import javax.annotation.Nonnull;
@@ -90,7 +76,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
 
     protected MessageFormatter(@Nonnull Locale locale, @Nullable List<Formatter> subFormatter) throws IllegalArgumentException {
         super(locale);
-        _subFormatter = subFormatter != null ? asImmutableList(subFormatter) : Collections.<Formatter>emptyList();
+        _subFormatter = subFormatter != null ? asImmutableList(subFormatter) : Collections.emptyList();
     }
 
     @Override
@@ -205,7 +191,6 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
         final Object calledValue = CALLED_VALUE.get();
         final Object targetValue;
         if (calledValue == null) {
-            // noinspection ConstantConditions
             CALLED_VALUE.set(value);
             targetValue = value;
         } else {
@@ -273,7 +258,7 @@ public class MessageFormatter extends FormatterSupport implements Iterable<Forma
         final boolean result;
         if (this == o) {
             result = true;
-        } else if (o == null || !(o instanceof MessageFormatter)) {
+        } else if (!(o instanceof MessageFormatter)) {
             result = false;
         } else {
             final MessageFormatter that = (MessageFormatter) o;

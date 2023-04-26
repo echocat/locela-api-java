@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.properties;
 
 import org.hamcrest.Description;
@@ -23,7 +9,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.echocat.locela.api.java.properties.StandardPropertyParser.propertyParser;
 
 public class StandardPropertyParserUnitTest {
@@ -97,11 +83,13 @@ public class StandardPropertyParserUnitTest {
         assertThat("a \\u00", isProperty("a", "u00"));
     }
 
+    @SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
     @Nonnull
     protected static Matcher<String> isProperty(@Nonnull String id, @Nullable String content) {
         return isProperty(null, id, content);
     }
 
+    @SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
     @Nonnull
     protected static Matcher<String> isProperty(@Nullable final Locale locale, @Nonnull final String id, @Nullable final String content) {
         return new TypeSafeMatcher<String>() {

@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2016 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.utils;
 
 import org.echocat.locela.api.java.messages.Message;
@@ -31,9 +17,10 @@ import static org.echocat.locela.api.java.testing.IterableMatchers.containsAllIt
 import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.utils.MessagesUtils.emptyMessages;
 import static org.echocat.locela.api.java.utils.MessagesUtils.toResourceBundle;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
+@SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
 public class MessagesUtilsUnitTest {
 
     protected static final Property<String> PROPERTY1 = property("a").set("1");

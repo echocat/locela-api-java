@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import org.junit.Test;
@@ -24,7 +10,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.messages.MessagesSupportUnitTest.MessageImpl.message;
 import static org.echocat.locela.api.java.messages.MessagesSupportUnitTest.MessagesImpl.messages;
@@ -126,7 +112,7 @@ public class MessagesSupportUnitTest {
             for (final Entry<String, String> idAndPlainMessage : idToPlainMessage.entrySet()) {
                 messages.add(message(idAndPlainMessage.getKey(), idAndPlainMessage.getValue()));
             }
-            return messages(messages.toArray(new Message[messages.size()]));
+            return messages(messages.toArray(new Message[0]));
         }
 
         @Nonnull
@@ -150,8 +136,7 @@ public class MessagesSupportUnitTest {
         @Nonnull
         @Override
         public Message find(@Nonnull String id) {
-            final Message result = _idToMessage.get(id);
-            return result != null ? result : null;
+            return _idToMessage.get(id);
         }
 
         @Override

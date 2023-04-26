@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import org.echocat.locela.api.java.properties.Properties;
@@ -28,9 +14,9 @@ import static org.echocat.locela.api.java.utils.ResourceUtils.closeQuietly;
 public interface FileAccessor {
 
     @Nullable
-    public Reader open(@Nonnull String file) throws IOException;
+    Reader open(@Nonnull String file) throws IOException;
 
-    public abstract static class InputStreamBased implements FileAccessor {
+    abstract class InputStreamBased implements FileAccessor {
 
         public static final Charset CHARSET = forName(getProperty(Properties.class.getName() + ".defaultCharset", "UTF-8"));
 
@@ -55,7 +41,7 @@ public interface FileAccessor {
 
     }
 
-    public static class ClassLoaderBased extends InputStreamBased {
+    class ClassLoaderBased extends InputStreamBased {
 
         @Nonnull
         private static final ClassLoaderBased INSTANCE = new ClassLoaderBased(Thread.currentThread().getContextClassLoader());
@@ -105,7 +91,7 @@ public interface FileAccessor {
 
     }
 
-    public static class FileSystemBased extends InputStreamBased {
+    class FileSystemBased extends InputStreamBased {
 
         @Nonnull
         private static final FileSystemBased INSTANCE = new FileSystemBased();

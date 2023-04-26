@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import org.echocat.locela.api.java.testing.IterableMatchers;
@@ -25,7 +11,7 @@ import static java.util.Locale.GERMAN;
 import static java.util.Locale.GERMANY;
 import static java.util.Locale.US;
 import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableMap;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.messages.StandardMessage.message;
@@ -141,7 +127,7 @@ public class LocaleAwareMessagesUnitTest {
 
         assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1A, MESSAGE3A, MESSAGE2B));
         assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES), isEqualTo(MESSAGE1B, MESSAGE2B));
-        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES), IterableMatchers.<Message>isEqualTo());
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES), IterableMatchers.isEqualTo());
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -156,13 +142,13 @@ public class LocaleAwareMessagesUnitTest {
 
     @Test
     public void testToString() throws Exception {
-        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES, US).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE3C, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES, US).toString(), is("null: " + messagesFor(MESSAGE3C, MESSAGE2C).toString()));
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES, US).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B)));
+        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES, US).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE3C, MESSAGE2B)));
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES, US).toString(), is("null: " + messagesFor(MESSAGE3C, MESSAGE2C)));
 
-        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE2B).toString()));
-        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES).toString(), is("null: " + messagesFor().toString()));
+        assertThat(new LocaleAwareMessages(GERMANY, LOCALE_TO_MESSAGES).toString(), is("de_DE: " + messagesFor(MESSAGE1A, MESSAGE3A, MESSAGE2B)));
+        assertThat(new LocaleAwareMessages(GERMAN, LOCALE_TO_MESSAGES).toString(), is("de: " + messagesFor(MESSAGE1B, MESSAGE2B)));
+        assertThat(new LocaleAwareMessages(null, LOCALE_TO_MESSAGES).toString(), is("null: " + messagesFor()));
     }
 
     @Test

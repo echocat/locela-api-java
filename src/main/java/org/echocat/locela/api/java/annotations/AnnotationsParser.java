@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.annotations;
 
 import javax.annotation.Nonnull;
@@ -33,17 +19,16 @@ public class AnnotationsParser {
     }
 
     @Nonnull
-    private final AnnotationParser _annotaionParser;
+    private final AnnotationParser _annotationParser;
 
     public AnnotationsParser() {
         this(null);
     }
 
-    public AnnotationsParser(@Nullable AnnotationParser annotaionParser) {
-        _annotaionParser = annotaionParser != null ? annotaionParser : AnnotationParser.annotationParser();
+    public AnnotationsParser(@Nullable AnnotationParser annotationParser) {
+        _annotationParser = annotationParser != null ? annotationParser : AnnotationParser.annotationParser();
     }
 
-    @SuppressWarnings("OverlyLongMethod")
     @Nonnull
     public Iterable<Annotation> parse(@Nullable String plain) {
         final List<Annotation> result = new ArrayList<>();
@@ -53,8 +38,7 @@ public class AnnotationsParser {
 
         boolean lineBeginning = true;
         boolean atFound = false;
-        for (int i = 0; i < chars.length; i++) {
-            final char c = chars[i];
+        for (final char c : chars) {
             if (c == ' ' || c == '\t') {
                 if (!lineBeginning) {
                     if (atFound) {
@@ -104,7 +88,7 @@ public class AnnotationsParser {
 
     @Nonnull
     protected AnnotationParser annotationParser() {
-        return _annotaionParser;
+        return _annotationParser;
     }
 
 }

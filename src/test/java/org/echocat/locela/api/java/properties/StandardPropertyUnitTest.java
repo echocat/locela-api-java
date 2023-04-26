@@ -1,22 +1,8 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.properties;
 
 import org.junit.Test;
 
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 
 
@@ -41,7 +27,7 @@ public class StandardPropertyUnitTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetOfIllegalValue() throws Exception {
-        // noinspection unchecked
+        // noinspection unchecked,rawtypes
         new StandardProperty("foo", String.class).set(123.345D);
     }
 

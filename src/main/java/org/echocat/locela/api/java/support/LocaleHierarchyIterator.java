@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.support;
 
 import org.echocat.locela.api.java.utils.CollectionUtils;
@@ -45,7 +31,7 @@ public class LocaleHierarchyIterator implements Iterator<Locale> {
 
     public LocaleHierarchyIterator(@Nullable Locale start, @Nullable Iterator<Locale> fallbacks) {
         _next = start;
-        _fallbacks = fallbacks != null ? fallbacks : CollectionUtils.<Locale>emptyIterator();
+        _fallbacks = fallbacks != null ? fallbacks : CollectionUtils.emptyIterator();
     }
 
     @Override
