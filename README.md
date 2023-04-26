@@ -36,7 +36,7 @@ repositories {
 
 #### 2. Pick your version
 
-Find the right version you want to install (usually the latest one) [by looking it up in our repository](https://github.com/echocat/locela-api-java/packages/1846686/).
+Find the right version you want to install (usually the latest one) [by looking it up in our repository](https://github.com/echocat/locela-api-java/packages/1846691/).
 
 #### 3. Add the dependency
 
