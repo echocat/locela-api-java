@@ -2,11 +2,19 @@
 
 Java API of a localization framework for an easy and platform independent work.
 
+## Topics
+
+* [Getting started](#getting-started)
+* [Contributing](#contributing)
+* [License](#license)
+
 ## Getting started
 
 ### Dependency
 
-#### 1. Register our repository
+#### 1. Register our repository (optional)
+
+You can directly register our repository if you want always the latest version. The central can be versions behind.
 
 ##### Maven
 
@@ -36,7 +44,10 @@ repositories {
 
 #### 2. Pick your version
 
-Find the right version you want to install (usually the latest one) [by looking it up in our repository](https://github.com/echocat/locela-api-java/packages/1846697/) or directly at [the Maven Central](http://search.maven.org/#search|ga|1|g:org.echocat.locela.api%20AND%20a:java).
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.echocat.locela.api/java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.echocat.locela.api/java)
+
+Find your desired version you want to install (usually the latest one) [by looking it up in our repository](https://github.com/echocat/locela-api-java/packages/1846697/) or directly at [the Maven Central](http://search.maven.org/#search|ga|1|g:org.echocat.locela.api%20AND%20a:java).
 
 #### 3. Add the dependency
 
