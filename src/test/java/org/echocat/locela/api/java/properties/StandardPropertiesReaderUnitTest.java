@@ -1,24 +1,9 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.properties;
 
-import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.echocat.locela.api.java.annotations.BarAnnotation;
 import org.echocat.locela.api.java.annotations.CommentAnnotation;
 import org.echocat.locela.api.java.annotations.GenericAnnotation;
-import org.echocat.locela.api.java.annotations.Annotation;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -31,11 +16,11 @@ import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
+import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
 import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
-import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
-import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StandardPropertiesReaderUnitTest {
 
@@ -61,8 +46,8 @@ public class StandardPropertiesReaderUnitTest {
             "#\n" +
             "\n" +
             "b=2");
-        assertThat(properties.get("a").annotations(), IterableMatchers.<Annotation>isEqualTo(new CommentAnnotation("this is a comment")));
-        assertThat(properties.get("b").annotations(), IterableMatchers.<Annotation>isEqualTo(new CommentAnnotation("this is another comment")));
+        assertThat(properties.get("a").annotations(), IterableMatchers.isEqualTo(new CommentAnnotation("this is a comment")));
+        assertThat(properties.get("b").annotations(), IterableMatchers.isEqualTo(new CommentAnnotation("this is another comment")));
     }
 
     @Test
@@ -86,7 +71,7 @@ public class StandardPropertiesReaderUnitTest {
             new CommentAnnotation("and some more comment")
         ));
         final Property<?> b = properties.get("b");
-        assertThat(asList(b.annotations()), IterableMatchers.<Annotation>isEqualTo(
+        assertThat(asList(b.annotations()), IterableMatchers.isEqualTo(
             new CommentAnnotation("this is another comment\nand more line")
         ));
     }
@@ -110,9 +95,9 @@ public class StandardPropertiesReaderUnitTest {
             new CommentAnnotation("and some more comment")
         ));
         final Property<?> a = properties.get("a");
-        assertThat(asList(a.annotations()), IterableMatchers.<Annotation>isEqualTo());
+        assertThat(asList(a.annotations()), IterableMatchers.isEqualTo());
         final Property<?> b = properties.get("b");
-        assertThat(asList(b.annotations()), IterableMatchers.<Annotation>isEqualTo());
+        assertThat(asList(b.annotations()), IterableMatchers.isEqualTo());
     }
 
     @Test
@@ -148,7 +133,7 @@ public class StandardPropertiesReaderUnitTest {
             new CommentAnnotation("and another comment for this property")
         ));
         final Property<?> b = properties.get("b");
-        assertThat(asList(b.annotations()), IterableMatchers.<Annotation>isEqualTo(
+        assertThat(asList(b.annotations()), IterableMatchers.isEqualTo(
             new CommentAnnotation("this is another comment\nand more line")
         ));
     }
@@ -315,7 +300,6 @@ public class StandardPropertiesReaderUnitTest {
             protected boolean matchesSafely(@Nonnull String source) {
                 //noinspection ConfusingArgumentToVarargsMethod
                 final Map<String, String> expectedContent = asMap(keyToValue);
-                //noinspection CollectionDeclaredAsConcreteClass
                 final Map<String, String> properties = toPropertiesMap(source);
                 final boolean result = expectedContent.equals(properties);
                 return result;

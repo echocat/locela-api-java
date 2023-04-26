@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.support;
 
 import org.junit.Test;
@@ -19,11 +5,10 @@ import org.junit.Test;
 import java.util.Locale;
 
 import static java.util.Locale.*;
-import static java.util.Locale.FRANCE;
-import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LocaleHierarchyUnitTest {
 

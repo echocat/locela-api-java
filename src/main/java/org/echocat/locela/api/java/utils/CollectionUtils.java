@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2016 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.utils;
 
 import javax.annotation.Nonnegative;
@@ -20,13 +6,12 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 import static java.util.Collections.*;
-import static org.echocat.locela.api.java.utils.ResourceUtils.closeQuietlyIfAutoCloseable;
 
 public class CollectionUtils {
 
 
     /**
-     * Returns a the given map enriched
+     * Returns the given map enriched
      * with the mappings <code>a[0] =&gt; a[1], a[2] =&gt; a[3], ...</code>.
      * @param a the elements to construct a {@link Map} from.
      * @return a {@link Map} constructed of the specified elements.
@@ -54,14 +39,14 @@ public class CollectionUtils {
      */
     @Nonnull
     public static <K, V> Map<K, V> asMap(@Nullable Object... a) {
-        return putAll(new LinkedHashMap<K, V>(), a);
+        return putAll(new LinkedHashMap<>(), a);
     }
 
     /**
-     * Returns a the given map enriched
+     * Returns the given map enriched
      * with the mappings <code>a[0] =&gt; a[1], a[2] =&gt; a[3], ...</code>.
      * @param a the elements to construct a {@link Map} from.
-     * @return a immutable {@link Map} constructed of the specified elements.
+     * @return an immutable {@link Map} constructed of the specified elements.
      */
     @Nonnull
     public static <K, V> Map<K, V> putAllAndMakeImmutable(@Nonnull Map<K, V> original, @Nullable Object... a) {
@@ -72,18 +57,19 @@ public class CollectionUtils {
      * Returns a {@link LinkedHashMap}
      * with the mappings <code>a[0] =&gt; a[1], a[2] =&gt; a[3], ...</code>.
      * @param a the elements to construct a {@link Map} from.
-     * @return a immutable {@link Map} constructed of the specified elements.
+     * @return an immutable {@link Map} constructed of the specified elements.
      */
     @Nonnull
     public static <K, V> Map<K, V> asImmutableMap(@Nullable Object... a) {
-        return putAllAndMakeImmutable(new LinkedHashMap<K, V>(), a);
+        return putAllAndMakeImmutable(new LinkedHashMap<>(), a);
     }
 
     @Nonnull
     public static <K, V> Map<K, V> asImmutableMap(@Nullable Map<K, V> map) {
-        return map != null ? unmodifiableMap(map) : Collections.<K, V>emptyMap();
+        return map != null ? unmodifiableMap(map) : Collections.emptyMap();
     }
 
+    @SafeVarargs
     @Nonnull
     public static <T, C extends Collection<T>> C addAll(@Nonnull C to, @Nullable T... elements) {
         if (elements != null) {
@@ -133,6 +119,7 @@ public class CollectionUtils {
      * Returns a {@link List} containing the given <code>objects</code>,
      * returns an empty List, if <code>objects</code> is null.
      */
+    @SafeVarargs
     @Nonnull
     public static <T> List<T> asList(@Nullable T... objects) {
         final List<T> result;
@@ -150,6 +137,7 @@ public class CollectionUtils {
      * Returns an unmodifiable {@link List} containing the given <code>objects</code>,
      * returns an empty {@link List}, if <code>objects</code> is null.
      */
+    @SafeVarargs
     @Nonnull
     public static <T> List<T> asImmutableList(@Nullable T... objects) {
         return unmodifiableList(asList(objects));
@@ -207,7 +195,7 @@ public class CollectionUtils {
         } else if (in instanceof Collection) {
             result = new LinkedHashSet<>((Collection<T>) in);
         } else {
-            result = addAll(new LinkedHashSet<T>(), in);
+            result = addAll(new LinkedHashSet<>(), in);
         }
         return result;
     }

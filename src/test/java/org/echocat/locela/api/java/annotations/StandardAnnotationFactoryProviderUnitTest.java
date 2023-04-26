@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.annotations;
 
 import org.echocat.locela.api.java.testing.BaseMatchers;
@@ -31,7 +17,7 @@ import java.util.List;
 import static org.echocat.locela.api.java.testing.Assert.fail;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
 import static org.echocat.locela.api.java.annotations.StandardAnnotationFactoryProvider.findDefaultFactories;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class StandardAnnotationFactoryProviderUnitTest {
 
@@ -41,7 +27,7 @@ public class StandardAnnotationFactoryProviderUnitTest {
     @Test
     public void testFindDefaultFactories() throws Exception {
         final Collection<Class<?>> typesOfFactories = extractTypesOf(findDefaultFactories());
-        assertThat(typesOfFactories, IterableMatchers.<Class<?>>containsAllItemsOf(
+        assertThat(typesOfFactories, IterableMatchers.containsAllItemsOf(
             CommentAnnotation.Factory.class,
             FooAnnotation.Factory.class,
             BarAnnotation.Factory.class,
@@ -55,8 +41,8 @@ public class StandardAnnotationFactoryProviderUnitTest {
     @Test
     public void testProvideById() throws Exception {
         final StandardAnnotationFactoryProvider provider = new StandardAnnotationFactoryProvider(FOO_FACTORY, BAR_FACTORY);
-        assertThat(provider.provideBy("foo"), BaseMatchers.<Factory<?>>is(FOO_FACTORY));
-        assertThat(provider.provideBy("bar"), BaseMatchers.<Factory<?>>is(BAR_FACTORY));
+        assertThat(provider.provideBy("foo"), BaseMatchers.is(FOO_FACTORY));
+        assertThat(provider.provideBy("bar"), BaseMatchers.is(BAR_FACTORY));
         try {
             provider.provideBy("xxx");
             fail("Expected exception missing.");

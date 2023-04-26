@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.format;
 
 import javax.annotation.Nonnegative;
@@ -43,7 +29,7 @@ public class ChoiceFormatter extends FormatterSupport {
 
     public ChoiceFormatter(@Nonnull Locale locale, @Nullable List<Condition> conditions) {
         super(locale);
-        _conditions = conditions != null ? conditions : Collections.<Condition>emptyList();
+        _conditions = conditions != null ? conditions : Collections.emptyList();
     }
 
     public ChoiceFormatter(@Nonnull Locale locale, @Nullable String pattern, @Nonnull FormatterFactory<?> root) {
@@ -133,7 +119,6 @@ public class ChoiceFormatter extends FormatterSupport {
             if (c == '\'') {
                 if (i + 1 <= chars.length && chars[i + 1] == '\'') {
                     sb.append('\'');
-                    //noinspection AssignmentToForLoopParameter
                     i++;
                 } else {
                     inEscape = !inEscape;

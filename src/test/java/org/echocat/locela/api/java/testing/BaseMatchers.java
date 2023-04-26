@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2016 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.testing;
 
 import org.hamcrest.*;
@@ -25,6 +11,7 @@ import java.util.*;
 
 import static java.util.Arrays.asList;
 
+@SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
 public class BaseMatchers {
 
     @Nonnull
@@ -63,6 +50,8 @@ public class BaseMatchers {
         return not(is(expected));
     }
 
+    @SuppressWarnings({"OverloadedVarargsMethod"})
+    @SafeVarargs
     @Nonnull
     public static <T> Matcher<T> isOneOf(@Nonnull final T firstExpected, @Nullable final T... others) {
         final Set<T> them = new HashSet<>();
@@ -105,22 +94,22 @@ public class BaseMatchers {
     public static Matcher<Object> isNotNull() {
         return IsNull.notNullValue();
     }
-    
+
     @Nonnull
     public static Matcher<Boolean> isTrue() {
         return isEqualTo(true);
     }
 
-    @Nonnull 
+    @Nonnull
     public static Matcher<Boolean> isFalse() {
         return isEqualTo(false);
     }
-    
+
     @Nonnull
     public static <T> Matcher<T> not(Matcher<T> anotherMatcher) {
         return IsNot.not(anotherMatcher);
     }
-    
+
     @Nonnull
     public static <T> Matcher<T> isEmpty() {
         return new TypeSafeMatcher<T>() {
@@ -156,7 +145,7 @@ public class BaseMatchers {
     public static Matcher<Object> hasNoItems() {
         return isEmpty();
     }
-    
+
     @Nonnull
     public static Matcher<Object> hasItems() {
         return new BaseMatcher<Object>() {

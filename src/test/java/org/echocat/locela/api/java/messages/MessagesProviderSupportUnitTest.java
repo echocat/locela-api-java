@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import org.echocat.locela.api.java.messages.FileAccessor.ClassLoaderBased;
@@ -24,7 +10,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.BaseMatchers.isSameAs;
 import static org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased.fileSystemFileAccessor;
@@ -40,12 +26,12 @@ public class MessagesProviderSupportUnitTest {
 
         assertThat(provider.provideBy(US, MessagesProviderSupportUnitTest.class), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(US));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
+        assertThat(provider.getLastAccessor(), is(new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
         assertThat(provider.getLastBaseFile(), is(MessagesProviderSupportUnitTest.class.getName().replace('.', '/') + ".properties"));
 
         assertThat(provider.provideBy(null, MessagesProviderImpl.class), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(null));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderImpl.class.getClassLoader())));
+        assertThat(provider.getLastAccessor(), is(new ClassLoaderBased(MessagesProviderImpl.class.getClassLoader())));
         assertThat(provider.getLastBaseFile(), is(MessagesProviderImpl.class.getName().replace('.', '/') + ".properties"));
     }
 
@@ -55,12 +41,12 @@ public class MessagesProviderSupportUnitTest {
 
         assertThat(provider.provideBy(US, MessagesProviderSupportUnitTest.class, "foo1.properties"), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(US));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
+        assertThat(provider.getLastAccessor(), is(new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
         assertThat(provider.getLastBaseFile(), is(MessagesProviderSupportUnitTest.class.getPackage().getName().replace('.', '/') + "/foo1.properties"));
 
         assertThat(provider.provideBy(null, MessagesProviderImpl.class, "foo2.properties"), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(null));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderImpl.class.getClassLoader())));
+        assertThat(provider.getLastAccessor(), is(new ClassLoaderBased(MessagesProviderImpl.class.getClassLoader())));
         assertThat(provider.getLastBaseFile(), is(MessagesProviderImpl.class.getPackage().getName().replace('.', '/') + "/foo2.properties"));
     }
 
@@ -70,12 +56,12 @@ public class MessagesProviderSupportUnitTest {
 
         assertThat(provider.provideBy(US, MessagesProviderSupportUnitTest.class.getClassLoader(), "foo/bar.properties"), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(US));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
+        assertThat(provider.getLastAccessor(), is(new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
         assertThat(provider.getLastBaseFile(), is("foo/bar.properties"));
 
         assertThat(provider.provideBy(null, MessagesProviderSupportUnitTest.class.getClassLoader(), "foo/bar2.properties"), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(null));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
+        assertThat(provider.getLastAccessor(), is(new ClassLoaderBased(MessagesProviderSupportUnitTest.class.getClassLoader())));
         assertThat(provider.getLastBaseFile(), is("foo/bar2.properties"));
     }
 
@@ -85,12 +71,12 @@ public class MessagesProviderSupportUnitTest {
 
         assertThat(provider.provideBy(US, new File("/foo"), "bar.properties"), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(US));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) fileSystemFileAccessor()));
+        assertThat(provider.getLastAccessor(), is(fileSystemFileAccessor()));
         assertThat(provider.getLastBaseFile(), is(new File("/foo", "bar.properties").getCanonicalPath()));
 
         assertThat(provider.provideBy(null, new File("/foo"), "bar2.properties"), isSameAs(FOO));
         assertThat(provider.getLastLocale(), is(null));
-        assertThat(provider.getLastAccessor(), is((FileAccessor) fileSystemFileAccessor()));
+        assertThat(provider.getLastAccessor(), is(fileSystemFileAccessor()));
         assertThat(provider.getLastBaseFile(), is(new File("/foo", "bar2.properties").getCanonicalPath()));
     }
 

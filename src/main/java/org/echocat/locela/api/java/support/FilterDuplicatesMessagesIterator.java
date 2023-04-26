@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.support;
 
 import org.echocat.locela.api.java.messages.Message;
@@ -42,7 +28,7 @@ public class FilterDuplicatesMessagesIterator implements Iterator<Message> {
     }
 
     public FilterDuplicatesMessagesIterator(@Nullable Iterator<Messages> inputs) {
-        _messagesIterator = inputs != null ? inputs : CollectionUtils.<Messages>emptyIterator();
+        _messagesIterator = inputs != null ? inputs : CollectionUtils.emptyIterator();
     }
 
     @Override
@@ -77,11 +63,6 @@ public class FilterDuplicatesMessagesIterator implements Iterator<Message> {
         final Message next = _next;
         _next = null;
         return next;
-    }
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("remove");
     }
 
 }

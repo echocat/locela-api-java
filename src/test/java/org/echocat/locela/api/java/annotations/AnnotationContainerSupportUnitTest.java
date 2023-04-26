@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.annotations;
 
 
@@ -22,7 +8,7 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 
 import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.echocat.locela.api.java.testing.Assert.fail;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 
@@ -63,19 +49,18 @@ public class AnnotationContainerSupportUnitTest {
             FOO_ANNOTATION1,
             FOO_ANNOTATION2
         ));
-        // noinspection rawtypes
-        assertThat(container.annotations(GenericAnnotation.class), IterableMatchers.<GenericAnnotation>isEqualTo());
+        assertThat(container.annotations(GenericAnnotation.class), IterableMatchers.isEqualTo());
     }
 
     @Test
     public void testAdd() throws Exception {
         final ContainerImpl container = new ContainerImpl();
-        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo());
+        assertThat(container.annotations(), IterableMatchers.isEqualTo());
 
         container.addAnnotation(FOO_ANNOTATION1);
         container.addAnnotation(FOO_ANNOTATION2);
         container.addAnnotation(FOO_ANNOTATION3);
-        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             FOO_ANNOTATION1,
             FOO_ANNOTATION2,
             FOO_ANNOTATION3
@@ -183,24 +168,24 @@ public class AnnotationContainerSupportUnitTest {
         ));
 
         container.removeAnnotations(FooAnnotation.class);
-        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             COMMENT_ANNOTATION1,
             COMMENT_ANNOTATION2,
             COMMENT_ANNOTATION3
         ));
 
         container.removeAnnotations(FooAnnotation.class);
-        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo(
+        assertThat(container.annotations(), IterableMatchers.isEqualTo(
             COMMENT_ANNOTATION1,
             COMMENT_ANNOTATION2,
             COMMENT_ANNOTATION3
         ));
 
         container.removeAnnotations(CommentAnnotation.class);
-        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo());
+        assertThat(container.annotations(), IterableMatchers.isEqualTo());
 
         container.removeAnnotations(CommentAnnotation.class);
-        assertThat(container.annotations(), IterableMatchers.<Annotation>isEqualTo());
+        assertThat(container.annotations(), IterableMatchers.isEqualTo());
     }
 
     protected static class ContainerImpl extends AnnotationContainerSupport {

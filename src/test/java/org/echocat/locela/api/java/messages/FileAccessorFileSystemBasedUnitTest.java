@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased;
@@ -21,11 +7,15 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import javax.annotation.Nonnull;
-import java.io.*;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
 
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
-import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static java.nio.file.Files.newOutputStream;
 import static org.echocat.locela.api.java.messages.FileAccessor.FileSystemBased.fileSystemFileAccessor;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FileAccessorFileSystemBasedUnitTest {
 
@@ -94,7 +84,7 @@ public class FileAccessorFileSystemBasedUnitTest {
             if (is == null) {
                 throw new IllegalStateException("File missing: " + file);
             }
-            try (final OutputStream os = new FileOutputStream(to)) {
+            try (final OutputStream os = newOutputStream(to.toPath())) {
                 IOUtils.copy(is, os);
             }
         }

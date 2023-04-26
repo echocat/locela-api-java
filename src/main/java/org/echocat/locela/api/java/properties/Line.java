@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.properties;
 
 import javax.annotation.Nonnull;
@@ -22,10 +8,10 @@ import java.io.Writer;
 
 public interface Line {
 
-    public void write(@Nonnull Writer to) throws IOException;
+    void write(@Nonnull Writer to) throws IOException;
 
     @ThreadSafe
-    public abstract static class LineSupport implements Line {
+    abstract class LineSupport implements Line {
 
         @Override
         public String toString() {
@@ -40,7 +26,7 @@ public interface Line {
     }
 
     @ThreadSafe
-    public abstract static class LineWithContent extends LineSupport {
+    abstract class LineWithContent extends LineSupport {
 
         @Nonnull
         private final String _content;
@@ -58,7 +44,7 @@ public interface Line {
 
 
     @ThreadSafe
-    public static class PropertyLine extends LineWithContent {
+    class PropertyLine extends LineWithContent {
 
         public PropertyLine(@Nonnull String content) {
             super(content);
@@ -73,7 +59,7 @@ public interface Line {
     }
 
     @ThreadSafe
-    public static class CommentLine extends LineWithContent {
+    class CommentLine extends LineWithContent {
 
         private static final char[] PREFIX = {'#', ' '};
 
@@ -104,7 +90,7 @@ public interface Line {
     }
 
     @ThreadSafe
-    public static class EmptyLine extends LineSupport {
+    class EmptyLine extends LineSupport {
 
         @Override
         public void write(@Nonnull Writer to) throws IOException {}

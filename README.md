@@ -1,42 +1,67 @@
 # Locela - API for Java
 
-[![Build status](https://api.travis-ci.org/echocat/locela-api-java.png)](https://travis-ci.org/echocat/locela-api-java)
-
 Java API of a localization framework for an easy and platform independent work.
 
-## Download
+## Getting started
 
-See [Central Repository](http://search.maven.org/#search|ga|1|g:org.echocat.locela.api%20AND%20a:java) for available downloads.
+### Dependency
 
-## Dependency Management
+#### 1. Register our repository
 
-See [Central Repository](http://search.maven.org/#search|ga|1|g:org.echocat.locela.api%20AND%20a:java) for available versions.
+##### Maven
 
-### Apache Maven
+```xml
+<repositories>
+    <repository>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+        <id>echocat</id>
+        <url>https://packages.echocat.org/maven</url>
+    </repository>
+</repositories>
+```
+
+##### Gradle
+
+```groovy
+repositories {
+    mavenCentral()
+    maven {
+        url "https://packages.echocat.org/maven"
+    }
+}
+```
+
+#### 2. Pick your version
+
+Find the right version you want to install (usually the latest one) [by looking it up in our repository](https://github.com/echocat/locela-api-java/packages/1846691/).
+
+#### 3. Add the dependency
+
+##### Maven
 
 ```xml 
 <dependency>
     <groupId>org.echocat.locela.api</groupId>
     <artifactId>java</artifactId>
-    <version>${versions.org.echocat.locela.api.java}</version>
+    <version><!-- THE VERSION --></version>
 </dependency>
 ```
 
-### Apache Ivy
+##### Gradle
 
-```xml
-<dependency org="org.echocat.locela.api" name="java" rev="${versions.org.echocat.locela.api.java}" />
+```groovy
+compile 'org.echocat.locela.api:java:<THE VERSION>'
 ```
 
-### Grandle/Grails
+## Contributing
 
-```txt
-compile 'org.echocat.locela.api:java:${versions.org.echocat.locela.api.java}'
-```
-# License
+**Locela - API for Java** is an open source project by [echocat](https://echocat.org). So if you want to make this project even better, you can contribute to this project on [GitHub](https://github.com/echocat/locela-api-java) by [fork us](https://github.com/echocat/locela-api-java/fork).
 
-echocat Locela Java API is licensed under [MPL 2.0](http://mozilla.org/MPL/2.0/).
+If you commit code to this project, you have to accept that this code will be released under the [license](#license) of this project.
 
-# Want to help?
+## License
 
-You are welcome. [Fork](https://github.com/echocat/locela-api-java/fork) or [contact](mailto:contact@echocat.org) us.
+See the [LICENSE](LICENSE) file.

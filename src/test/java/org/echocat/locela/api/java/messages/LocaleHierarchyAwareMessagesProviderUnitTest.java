@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.messages;
 
 import org.junit.Test;
@@ -23,12 +9,12 @@ import java.util.Locale;
 import java.util.Map;
 
 import static java.util.Locale.*;
-import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
+import static org.echocat.locela.api.java.messages.StandardMessagesProvider.messagesProvider;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.BaseMatchers.isEmpty;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
-import static org.echocat.locela.api.java.messages.StandardMessagesProvider.messagesProvider;
-import static org.junit.Assert.assertThat;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LocaleHierarchyAwareMessagesProviderUnitTest {
 
@@ -119,9 +105,9 @@ public class LocaleHierarchyAwareMessagesProviderUnitTest {
     }
 
     @Nullable
-    protected static LocaleAwareMessages provideBy(@Nullable Iterable<Locale> fallbackLocales, @Nullable Locale targetLoale) throws Exception {
+    protected static LocaleAwareMessages provideBy(@Nullable Iterable<Locale> fallbackLocales, @Nullable Locale targetLocale) throws Exception {
         final LocaleHierarchyAwareMessagesProvider provider = new LocaleHierarchyAwareMessagesProvider(LOCALES, fallbackLocales);
-        final LocaleAwareMessages messages = (LocaleAwareMessages) provider.provideBy(targetLoale, TYPE, "testfiles/foo1.properties");
+        final LocaleAwareMessages messages = (LocaleAwareMessages) provider.provideBy(targetLocale, TYPE, "testfiles/foo1.properties");
         return messages;
     }
 

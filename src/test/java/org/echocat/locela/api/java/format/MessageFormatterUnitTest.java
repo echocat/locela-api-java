@@ -1,37 +1,23 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014-2015 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.format;
 
-import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.echocat.locela.api.java.format.MessageFormatter.ParameterAwareFormatter;
 import org.echocat.locela.api.java.format.MessageFormatter.PassThruFormatter;
 import org.echocat.locela.api.java.format.MessageFormatter.StaticFormatter;
+import org.echocat.locela.api.java.testing.IterableMatchers;
 import org.junit.Test;
 
 import java.io.StringWriter;
 
-import static org.echocat.locela.api.java.format.MessageFormatter.format;
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
-import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
+import static org.echocat.locela.api.java.format.MessageFormatter.format;
+import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
 import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.testing.IterableMatchers.isEqualTo;
-import static org.echocat.locela.api.java.format.MessageFormatterFactory.messageFormatterFactory;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asList;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asMap;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -136,12 +122,12 @@ public class MessageFormatterUnitTest {
 
     @Test
     public void plainConstructor() throws Exception {
-        assertThat(new MessageFormatter(US, "a{0}b").getSubFormatter(), IterableMatchers.<Formatter>isEqualTo(
+        assertThat(new MessageFormatter(US, "a{0}b").getSubFormatter(), IterableMatchers.isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", new PassThruFormatter(US)),
             new StaticFormatter(US, "b")
         ));
-        assertThat(new MessageFormatter(US, "a{0}b", messageFormatterFactory()).getSubFormatter(), IterableMatchers.<Formatter>isEqualTo(
+        assertThat(new MessageFormatter(US, "a{0}b", messageFormatterFactory()).getSubFormatter(), IterableMatchers.isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", new PassThruFormatter(US)),
             new StaticFormatter(US, "b")
@@ -153,8 +139,8 @@ public class MessageFormatterUnitTest {
         final Formatter formatter = mock(Formatter.class);
         final FormatterFactory<?> formatterFactory = mock(FormatterFactory.class);
         doReturn("foo").when(formatterFactory).getId();
-        doReturn(formatter).when(formatterFactory).createBy(eq(US), eq((String) null), any(FormatterFactory.class));
-        assertThat(new MessageFormatter(US, "a{0,foo}b", formatterFactory).getSubFormatter(), IterableMatchers.<Formatter>isEqualTo(
+        doReturn(formatter).when(formatterFactory).createBy(eq(US), eq( null), any(FormatterFactory.class));
+        assertThat(new MessageFormatter(US, "a{0,foo}b", formatterFactory).getSubFormatter(), IterableMatchers.isEqualTo(
             new StaticFormatter(US, "a"),
             new ParameterAwareFormatter(US, "0", formatter),
             new StaticFormatter(US, "b")

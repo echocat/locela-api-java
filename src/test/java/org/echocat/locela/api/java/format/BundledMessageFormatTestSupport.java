@@ -1,17 +1,3 @@
-/*****************************************************************************************
- * *** BEGIN LICENSE BLOCK *****
- *
- * Version: MPL 2.0
- *
- * echocat Locela - API for Java, Copyright (c) 2014 echocat
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * *** END LICENSE BLOCK *****
- ****************************************************************************************/
-
 package org.echocat.locela.api.java.format;
 
 import org.echocat.locela.api.java.properties.Properties;
@@ -28,11 +14,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Locale.US;
-import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
-import static org.echocat.locela.api.java.testing.Assert.assertThat;
-import static org.echocat.locela.api.java.testing.BaseMatchers.is;
 import static org.echocat.locela.api.java.properties.StandardPropertiesReader.propertiesReader;
+import static org.echocat.locela.api.java.testing.BaseMatchers.is;
+import static org.echocat.locela.api.java.utils.CollectionUtils.asImmutableList;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public abstract class BundledMessageFormatTestSupport {
 
@@ -68,7 +55,7 @@ public abstract class BundledMessageFormatTestSupport {
             if (is == null) {
                 throw new AssertionError("The expected file '" + filename + "' could not be found.");
             }
-            try (final Reader reader = new InputStreamReader(is, "UTF-8")) {
+            try (final Reader reader = new InputStreamReader(is, UTF_8)) {
                 return propertiesReader().read(reader);
             }
         }
