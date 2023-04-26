@@ -265,6 +265,15 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>maven-central</id>
+            <distributionManagement>
+                <repository>
+                    <id>oss-sonartype-releases</id>
+                    <url>dav:https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+                </repository>
+            </distributionManagement>
+        </profile>
     </profiles>
 
     <issueManagement>
