@@ -23,7 +23,7 @@ jobs:
           cache: maven
 
       - name: Maven Verify
-        run: mvn --no-transfer-progress --batch-mode --update-snapshots --fail-at-end verify
+        run: mvn --no-transfer-progress --batch-mode --update-snapshots --fail-at-end clean verify
 
       - name: Publish Test Report
         if: success() || failure()
