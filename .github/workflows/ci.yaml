@@ -25,4 +25,8 @@ jobs:
           cache: maven
 
       - name: Maven Verify
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots --fail-at-end verify
+
+      - name: Publish Test Report
+        if: success() || failure()
+        uses: scacap/action-surefire-report@v1
